@@ -1,0 +1,139 @@
+.page {
+  max-width: 1920px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-dawn-pink);
+  background-image: url("/case-studies/profile-moderation/section-background.png");
+  background-repeat: repeat;
+  background-size: 440px auto;
+  color: var(--color-armadillo);
+}
+
+.pageChrome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px var(--space-page) 12px;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-dawn-pink) 94%, transparent);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.2px;
+  letter-spacing: 2.24px;
+  text-transform: uppercase;
+  color: var(--color-tuscany);
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--color-tuscany);
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbSep {
+  opacity: 0.5;
+}
+
+.backLink {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-tuscany);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 0 80px;
+}
+
+.slice {
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 var(--space-page);
+}
+
+.sliceTitle {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(22px, 2.5vw, 28px);
+  color: var(--color-cod-gray);
+}
+
+.figure {
+  margin: 0;
+  padding: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--color-satin-linen);
+  background: var(--color-fantasy);
+  box-shadow: 0 16px 40px rgba(15, 14, 12, 0.06);
+}
+
+.sliceImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px var(--space-page);
+  background: var(--color-cod-gray);
+  color: var(--color-fuscous);
+  font-size: 12px;
+  line-height: 20.4px;
+  letter-spacing: 0.6px;
+}
+
+.footerLink {
+  color: var(--color-fuscous);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-fuscous);
+}
+
+.footerLink:hover {
+  color: var(--color-fantasy);
+  border-color: var(--color-fantasy);
+}
+
+@media (max-width: 640px) {
+  .pageChrome {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .slice {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .main {
+    gap: 32px;
+    padding-bottom: 56px;
+  }
+}
