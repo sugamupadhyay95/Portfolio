@@ -146,7 +146,6 @@
   font-weight: 400;
   line-height: 1.7;
   color: var(--color-armadillo);
-  max-width: 72ch;
 }
 
 /* ─── Chip pill ──────────────────────────────────────────────────── */
@@ -365,7 +364,7 @@
 /* ─── Research section ───────────────────────────────────────────── */
 .researchSection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 48px;
   align-items: start;
   padding: 56px 0;
@@ -374,12 +373,12 @@
 
 .researchText {
   display: flex;
-  flex-direction: column;
+  flex-direction: rows;
 }
 
 .personaBlock {
   display: flex;
-  flex-direction: column;
+  flex-direction: rows;
   gap: 20px;
 }
 
@@ -451,11 +450,7 @@
   font-size: clamp(14px, 1.1vw, 16px);
   line-height: 1.7;
   color: var(--color-armadillo);
-  max-width: 80ch;
   padding: 20px 24px;
-  background: color-mix(in srgb, var(--color-white) 55%, transparent);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
 }
 
 /* ─── Design Decisions ───────────────────────────────────────────── */
@@ -644,7 +639,7 @@
   flex-wrap: wrap;
   margin-top: 32px;
   padding: 20px 28px;
-  background: var(--color-cod-gray);
+  background: var(--color-olive-haze);
   border-radius: 4px;
 }
 
@@ -813,9 +808,7 @@
 .reflectionBody {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 72ch;
-}
+  gap: 20px;}
 
 /* ─── Footer ─────────────────────────────────────────────────────── */
 .footer {

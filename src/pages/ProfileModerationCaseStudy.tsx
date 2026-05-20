@@ -227,7 +227,7 @@ export function ProfileModerationCaseStudy() {
           {/* Hero image */}
           <div className={styles.heroRight} data-node-id="653:3887">
             <ImagePlaceholder
-              src="/case-studies/profile-moderation/section-hero.png"
+              src="/case-studies/profile-moderation/Content.png"
               alt="Profile Moderation Tool — UI preview showing the four-panel moderation interface"
               className={styles.heroImg}
               loading="eager"
@@ -285,7 +285,7 @@ export function ProfileModerationCaseStudy() {
           data-node-id="663:993"
         >
           <ImagePlaceholder
-            src="/case-studies/profile-moderation/section-the-problem.png"
+            src="/case-studies/profile-moderation/Old UI Screenshot.png"
             alt="Annotated breakdown of the old moderation interface showing five friction points"
           />
         </div>
@@ -312,7 +312,7 @@ export function ProfileModerationCaseStudy() {
           <div className={styles.personaBlock} data-node-id="663:1125">
             <div className={styles.personaCard} data-node-id="663:1113">
               <ImagePlaceholder
-                src="/case-studies/profile-moderation/persona-card.png"
+                src="/case-studies/profile-moderation/Persona Card.png"
                 alt="Persona card — BPO content moderator working on Moj profiles"
                 className={styles.personaImg}
               />
@@ -360,7 +360,7 @@ export function ProfileModerationCaseStudy() {
               </div>
               <div className={styles.iaDiagram} data-node-id="665:2546">
                 <ImagePlaceholder
-                  src="/case-studies/profile-moderation/section-ia.png"
+                  src="/case-studies/profile-moderation/div.case-visual.png"
                   alt="Four-panel information architecture diagram"
                   className={styles.sectionImg}
                 />
@@ -454,7 +454,7 @@ export function ProfileModerationCaseStudy() {
                 data-node-id="711:2732"
               >
                 <ImagePlaceholder
-                  src="/case-studies/profile-moderation/before-ui.png"
+                  src="/case-studies/profile-moderation/Before Screenshot.png"
                   alt="Old moderation interface — manual video play, limited metadata"
                   className={styles.compImg}
                 />
@@ -467,8 +467,8 @@ export function ProfileModerationCaseStudy() {
                   Old moderation interface
                 </p>
                 <p className={styles.captionSub}>
-                  Manual video play, limited metadata, expanded genre list,
-                  no progress indicator
+                Single panel · click-to-play · minimal metadata,
+                AHT 105–110 seconds
                 </p>
               </div>
             </div>
