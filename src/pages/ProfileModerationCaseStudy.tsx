@@ -495,8 +495,8 @@ export function ProfileModerationCaseStudy() {
               >
                 <p className={styles.captionTitle}>Redesigned interface</p>
                 <p className={styles.captionSub}>
-                  Autoplay video, full metadata panel, compact genre dropdown,
-                  progress visibility
+                Four panels · autoplay · full metadata · Camera icon,
+                AHT ~90 seconds
                 </p>
               </div>
             </div>
