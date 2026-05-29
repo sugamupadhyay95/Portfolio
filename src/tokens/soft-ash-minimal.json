@@ -1,0 +1,87 @@
+{
+  "theme": {
+    "name": "Soft Ash Minimal",
+    "description": "Final minimal editorial color system for UX/Product portfolio"
+  },
+  "base": {
+    "softAsh": "#F4F4F2",
+    "softWhite": "#FFFFFF",
+    "charcoalBlack": "#202124",
+    "mutedGraphite": "#666B70",
+    "lightMistGray": "#E5E7EB"
+  },
+  "accent": {
+    "primary": {
+      "base": "#607D8B",
+      "surface": "#CFDEE7",
+      "soft": "#EEF4F7"
+    },
+    "success": {
+      "base": "#6C8F7A",
+      "surface": "#DDE9E0",
+      "soft": "#EEF5F0"
+    },
+    "warning": {
+      "base": "#E0B15A",
+      "surface": "#F7E8C8",
+      "soft": "#FBF4E4"
+    },
+    "info": {
+      "base": "#8E8AC7",
+      "surface": "#E8E6F5",
+      "soft": "#F4F3FB"
+    },
+    "warmSand": {
+      "base": "#8B6B4A",
+      "surface": "#F3E8D7",
+      "soft": "#FBF5EC"
+    }
+  },
+  "backgrounds": {
+    "main": "#F4F4F2",
+    "alternate": "#FAFAF8",
+    "card": "#FFFFFF",
+    "highlight": "#FBFBF8"
+  },
+  "typography": {
+    "heading": "#202124",
+    "body": "#666B70",
+    "muted": "#8A8D91",
+    "metadata": "#607D8B"
+  },
+  "buttons": {
+    "primary": {
+      "background": "#607D8B",
+      "text": "#FFFFFF",
+      "hover": "#526D79"
+    },
+    "secondary": {
+      "background": "transparent",
+      "border": "#607D8B",
+      "text": "#607D8B",
+      "hoverBackground": "#EEF4F7"
+    }
+  },
+  "chips": {
+    "research": { "background": "#E8E6F5", "text": "#6E6AA8" },
+    "wireframing": { "background": "#EEF4F0", "text": "#5F7B68" },
+    "prototyping": { "background": "#F7E8C8", "text": "#9A7330" },
+    "analytics": { "background": "#EEF4F7", "text": "#607D8B" },
+    "designSystems": { "background": "#F3E8D7", "text": "#8B6B4A" }
+  },
+  "metrics": {
+    "timeSaved": { "background": "#F8FAFB", "number": "#607D8B" },
+    "costSavings": { "background": "#EEF5F0", "number": "#6C8F7A" },
+    "operational": { "background": "#F4F3FB", "number": "#8E8AC7" }
+  },
+  "insightQuote": {
+    "background": "#FBF5EC",
+    "border": "#EAD9BF",
+    "text": "#8B6B4A"
+  },
+  "borders": {
+    "divider": "#E5E7EB",
+    "soft": "#EFEFEF",
+    "card": "#E1E4E8"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "theme": {
+    "name": "Minimal Black & White",
+    "description": "Monochrome portfolio with color reserved for metrics, chips, and highlighted text"
+  },
+  "base": {
+    "white": "#FFFFFF",
+    "offWhite": "#FAFAFA",
+    "mutedSurface": "#F5F5F5",
+    "black": "#0A0A0A",
+    "bodyText": "#3D3D3D",
+    "mutedText": "#737373",
+    "metadataText": "#525252",
+    "border": "#E5E5E5",
+    "borderStrong": "#D4D4D4"
+  },
+  "accentMetrics": {
+    "green": "#166534",
+    "blue": "#1D4ED8",
+    "violet": "#7C3AED",
+    "amber": "#B45309"
+  },
+  "accentChips": {
+    "research": { "bg": "#F0FDF4", "text": "#166534" },
+    "wireframing": { "bg": "#EFF6FF", "text": "#1D4ED8" },
+    "prototyping": { "bg": "#FFFBEB", "text": "#B45309" },
+    "analytics": { "bg": "#F5F3FF", "text": "#6D28D9" },
+    "designSystems": { "bg": "#F5F5F5", "text": "#0A0A0A" }
+  },
+  "highlightText": {
+    "primary": "#166534",
+    "secondary": "#1D4ED8"
+  }
+}

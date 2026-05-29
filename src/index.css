@@ -1,19 +1,148 @@
 :root {
-  --color-tuscany: #c8502a;
-  --color-armadillo: #3a3830;
-  --color-fantasy: #fdfcf9;
-  --color-cod-gray: #0f0e0c;
-  --color-olive-haze: #8a8470;
-  --color-dawn-pink: #f5f0e8;
-  --color-satin-linen: #e0d9cc;
-  --color-pearl-bush: #ede8dc;
-  --color-tacao: #e8a87c;
-  --color-white: #ffffff;
-  --color-fuscous: #5a5448;
-  --color-border: #e0d9cc;
+  /* Minimal Black & White — src/tokens/minimal-black-white.json */
+
+  /* Surfaces */
+  --bg-primary: #ffffff;
+  --bg-alternate: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-highlight: #f5f5f5;
+
+  /* Typography */
+  --text-heading: #0a0a0a;
+  --text-body: #3d3d3d;
+  --text-muted: #737373;
+  --text-metadata: #525252;
+  --text-inverse: #ffffff;
+  --text-highlight: #166534;
+  --text-highlight-alt: #1d4ed8;
+
+  /* Borders */
+  --border-default: #e5e5e5;
+  --border-light: #f0f0f0;
+  --border-card: #d4d4d4;
+
+  /* Accent palette — metrics, chips, highlighted copy only */
+  --accent-metric-1: #166534;
+  --accent-metric-2: #1d4ed8;
+  --accent-metric-3: #7c3aed;
+  --accent-metric-4: #b45309;
+  --metric-on-dark-1: #4ade80;
+  --metric-on-dark-2: #93c5fd;
+
+  --accent-success: var(--accent-metric-1);
+  --accent-success-surface: #f0fdf4;
+  --accent-success-soft: #f0fdf4;
+
+  --accent-warning: var(--accent-metric-4);
+  --accent-warning-surface: #fffbeb;
+  --accent-warning-soft: #fffbeb;
+
+  --accent-info: var(--accent-metric-3);
+  --accent-info-surface: #f5f3ff;
+  --accent-info-soft: #f5f3ff;
+
+  --accent-warm-sand: var(--text-body);
+  --accent-warm-sand-surface: #f5f5f5;
+  --accent-warm-sand-soft: #fafafa;
+
+  /* Neutral UI chrome */
+  --accent-primary: #0a0a0a;
+  --accent-primary-surface: #f5f5f5;
+  --accent-primary-soft: #fafafa;
+  --accent-primary-hover: #262626;
+
+  /* Buttons */
+  --btn-primary-bg: #0a0a0a;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #262626;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: #0a0a0a;
+  --btn-secondary-text: #0a0a0a;
+  --btn-secondary-hover-bg: #f5f5f5;
+
+  /* Navbar */
+  --navbar-bg: var(--bg-primary);
+  --navbar-text: var(--text-body);
+  --navbar-active: var(--text-heading);
+  --navbar-hover-bg: var(--bg-highlight);
+  --navbar-border: var(--border-default);
+
+  /* Hero */
+  --hero-bg: var(--bg-primary);
+  --hero-heading: var(--text-heading);
+  --hero-body: var(--text-body);
+  --hero-metadata: var(--text-metadata);
+  --hero-metric-primary: var(--accent-metric-1);
+  --hero-metric-secondary: var(--accent-metric-2);
+  --hero-metric-tertiary: var(--accent-metric-3);
+
+  /* Work cards */
+  --cards-bg: var(--bg-primary);
+  --cards-surface: var(--bg-surface);
+  --cards-hover: var(--bg-highlight);
+  --cards-border: var(--border-card);
+
+  /* About */
+  --about-bg: var(--bg-alternate);
+  --about-timeline-year: var(--text-metadata);
+  --about-timeline-divider: var(--border-default);
+
+  /* Skill chips — colored */
+  --chip-research-bg: #f0fdf4;
+  --chip-research-text: #166534;
+  --chip-wireframing-bg: #eff6ff;
+  --chip-wireframing-text: #1d4ed8;
+  --chip-prototyping-bg: #fffbeb;
+  --chip-prototyping-text: #b45309;
+  --chip-analytics-bg: #f5f3ff;
+  --chip-analytics-text: #6d28d9;
+  --chip-design-systems-bg: #f5f5f5;
+  --chip-design-systems-text: #0a0a0a;
+  --chip-default-bg: #f5f5f5;
+  --chip-default-text: #404040;
+  --chip-default-border: var(--border-default);
+
+  /* Case study page */
+  --cs-bg: var(--bg-primary);
+  --cs-panel-muted: #f5f5f5;
+  --cs-research-bg: var(--bg-alternate);
+  --cs-insight-bg: var(--bg-alternate);
+  --cs-insight-text: var(--text-body);
+  --cs-insight-border: var(--border-default);
+  --cs-metric-time-bg: #eff6ff;
+  --cs-metric-time-text: #1d4ed8;
+  --cs-metric-cost-bg: #f0fdf4;
+  --cs-metric-cost-text: #166534;
+  --cs-metric-ops-bg: #f5f3ff;
+  --cs-metric-ops-text: #7c3aed;
+  --cs-quote-bg: #f5f5f5;
+  --cs-quote-text: var(--text-highlight);
+  --cs-quote-border: var(--border-default);
+
+  /* Footer */
+  --footer-bg: var(--bg-primary);
+  --footer-text: var(--text-muted);
+  --footer-heading: var(--text-heading);
+  --footer-border: var(--border-default);
+
+  /* Legacy aliases → monochrome base */
+  --accent-blue: var(--accent-primary);
+  --color-tuscany: var(--text-metadata);
+  --color-armadillo: var(--text-body);
+  --color-fantasy: var(--bg-primary);
+  --color-cod-gray: var(--text-heading);
+  --color-olive-haze: var(--text-muted);
+  --color-dawn-pink: var(--bg-primary);
+  --color-satin-linen: var(--border-default);
+  --color-pearl-bush: var(--bg-card);
+  --color-tacao: var(--bg-highlight);
+  --color-white: var(--bg-surface);
+  --color-fuscous: var(--text-muted);
+  --color-border: var(--border-default);
 
   --font-sans: "DM Sans", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  --font-serif: "Arima Madurai", Georgia, serif;
 
   --space-page: 80px;
   --space-section-y: 96px;
@@ -34,8 +163,8 @@ body {
   min-height: 100vh;
   font-family: var(--font-sans);
   font-size: 16px;
-  color: var(--color-armadillo);
-  background: var(--color-fantasy);
+  color: var(--text-body);
+  background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
 }
 

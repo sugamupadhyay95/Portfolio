@@ -2,6 +2,76 @@ import { Link } from "react-router-dom";
 import styles from "./Portfolio.module.css";
 import { SiteHeader } from "./SiteHeader";
 
+const WORK_CARDS = [
+  {
+    tag: "SaaS · Ops Tool · ShareChat",
+    title: "Profile Moderation Tool — Saving ₹4.3L/Month",
+    desc: "A full redesign of the content moderation SaaS used by 50+ operations employees daily. Deep user research revealed friction points that were costing the company hundreds of hours per week.",
+    imageSrc: "/case-studies/profile-moderation/section-hero.png",
+    imageAlt: "Profile Moderation Tool case study preview",
+    href: "/case-studies/profile-moderation-tool",
+    metrics: [
+      { value: "₹4.3L", label: "saved / month" },
+      { value: "−20s", label: "avg. handle time" },
+      { value: "50+", label: "employees impacted" },
+    ],
+  },
+  {
+    tag: "Dashboard · Notifications · ShareChat",
+    title: "Mastertool Dashboard",
+    desc: "Bulk notification scheduler and tagging tools that saved 4,000+ man-hours and ₹9.4L per month in operations costs.",
+    imageSrc: undefined,
+    imageAlt: "Mastertool Dashboard case study preview",
+    href: "#mastertool",
+    metrics: [
+      { value: "₹9.4L", label: "saved / month" },
+      { value: "4K+", label: "man-hours saved" },
+    ],
+  },
+  {
+    tag: "Web · Consumer · ShareChat",
+    title: "Careers & Profile Web Redesign",
+    desc: "Revamped three key web surfaces — Careers, Explore, and Profile pages — resulting in a measurable lift in daily active users.",
+    imageSrc: undefined,
+    imageAlt: "Careers and Profile web redesign preview",
+    href: "#careers-profile",
+    metrics: [{ value: "+0.24%", label: "DAU boost" }],
+  },
+];
+
+function CaseCardImage({
+  src,
+  alt,
+}: {
+  src?: string;
+  alt: string;
+}) {
+  return (
+    <div
+      className={styles.caseVisual}
+      data-placeholder={src ? undefined : alt}
+    >
+      {src ? (
+        <img
+          className={styles.caseThumb}
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).style.display = "none";
+            (e.currentTarget.parentElement as HTMLElement).setAttribute(
+              "data-placeholder",
+              alt
+            );
+          }}
+        />
+      ) : null}
+      <span className={styles.casePlaceholderLabel}>{alt}</span>
+    </div>
+  );
+}
+
 const skills = [
   "UX Research",
   "Figma",
@@ -16,6 +86,21 @@ const skills = [
   "Canva Systems",
   "HubSpot",
 ] as const;
+
+const skillChipStyles: Record<(typeof skills)[number], string> = {
+  "UX Research": styles.skillResearch,
+  Figma: styles.skillPrototyping,
+  "Interaction Design": styles.skillWireframing,
+  Prototyping: styles.skillPrototyping,
+  "Usability Testing": styles.skillResearch,
+  "Design Systems": styles.skillDesignSystems,
+  "Clarity Analytics": styles.skillAnalytics,
+  "Adobe XD": styles.skillWireframing,
+  "Motion Design": styles.skillDefault,
+  Framer: styles.skillPrototyping,
+  "Canva Systems": styles.skillDesignSystems,
+  HubSpot: styles.skillDefault,
+};
 
 const experience = [
   {
@@ -73,6 +158,13 @@ const processSteps = [
   },
 ] as const;
 
+const HERO_METRICS = [
+  { value: "₹9.4L", label: "saved/month at ShareChat" },
+  { value: "6+", label: "years of UX experience" },
+  { value: "4K+", label: "man-hours saved by design" },
+  { value: "1M+", label: "campaign impressions" },
+] as const;
+
 export function Portfolio() {
   return (
     <div className={styles.frame} data-node-id="643:1449">
@@ -83,7 +175,7 @@ export function Portfolio() {
           <div className={styles.heroLeft} data-node-id="643:1451">
             <div className={styles.heroTag}>
               <span className={styles.heroTagRule} aria-hidden />
-              <p className={styles.heroTagText}>UX / Product Designer · 6+ Years</p>
+              <p className={styles.heroTagText}>UX / Product Designer</p>
             </div>
             <h1 className={styles.heroTitle}>
               <span className={styles.heroTitleLine}>Curious about</span>
@@ -108,28 +200,30 @@ export function Portfolio() {
           </div>
 
           <div className={styles.heroRight} data-node-id="643:1465">
-            <blockquote className={styles.heroQuote}>
-              <p>&quot;I like to read people and love</p>
-              <p>designing for them.&quot;</p>
-            </blockquote>
-            <div className={styles.statsGrid} data-node-id="643:1466">
-              <div className={styles.statCard}>
-                <p className={styles.statValue}>₹9.4L</p>
-                <p className={styles.statLabel}>saved/month at ShareChat</p>
+            <img
+              className={styles.heroPortrait}
+              src="/images/hero-stamp.png"
+              alt="Portrait stamp illustration — 6+ years of design experience"
+              width={520}
+              height={520}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </section>
+
+        <section
+          className={styles.metricsSection}
+          aria-label="Impact metrics"
+          data-node-id="643:1466"
+        >
+          <div className={styles.statsGrid}>
+            {HERO_METRICS.map((stat) => (
+              <div key={stat.label} className={styles.statCard}>
+                <p className={styles.statValue}>{stat.value}</p>
+                <p className={styles.statLabel}>{stat.label}</p>
               </div>
-              <div className={styles.statCard}>
-                <p className={styles.statValue}>6+</p>
-                <p className={styles.statLabel}>years of UX experience</p>
-              </div>
-              <div className={styles.statCard}>
-                <p className={styles.statValue}>4K+</p>
-                <p className={styles.statLabel}>man-hours saved by design</p>
-              </div>
-              <div className={styles.statCard}>
-                <p className={styles.statValue}>1M+</p>
-                <p className={styles.statLabel}>campaign impressions</p>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -141,111 +235,29 @@ export function Portfolio() {
           <h2 className={styles.sectionTitle}>Case Studies</h2>
 
           <div className={styles.workGrid} data-node-id="643:1494">
-            <article className={styles.featuredCase} data-node-id="643:1495">
-              <div className={styles.featuredBody}>
-                <p className={styles.caseTag}>SaaS · Ops Tool · ShareChat</p>
-                <Link to="/case-studies/profile-moderation-tool" className={styles.featuredTitleLink}>
-                  <h3 className={styles.featuredTitle}>Profile Moderation Tool — Saving ₹4.3L/Month</h3>
-                </Link>
-                <p className={styles.caseDesc}>
-                  A full redesign of the content moderation SaaS used by 50+ operations employees daily. Deep user
-                  research revealed friction points that were costing the company hundreds of hours per week.
-                </p>
-                <div className={styles.metricsRow}>
-                  <div>
-                    <p className={styles.metricValue}>₹4.3L</p>
-                    <p className={styles.metricLabel}>saved / month</p>
+            {WORK_CARDS.map((card) => (
+              <article key={card.title} className={styles.caseCard}>
+                <div className={styles.caseCardBody}>
+                  <p className={styles.caseTag}>{card.tag}</p>
+                  <Link to={card.href} className={styles.featuredTitleLink}>
+                    <h3 className={styles.caseTitle}>{card.title}</h3>
+                  </Link>
+                  <p className={styles.caseDesc}>{card.desc}</p>
+                  <div className={styles.metricsRow}>
+                    {card.metrics.map((m) => (
+                      <div key={m.label}>
+                        <p className={styles.metricValue}>{m.value}</p>
+                        <p className={styles.metricLabel}>{m.label}</p>
+                      </div>
+                    ))}
                   </div>
-                  <div>
-                    <p className={styles.metricValue}>−20s</p>
-                    <p className={styles.metricLabel}>avg. handle time</p>
-                  </div>
-                  <div>
-                    <p className={styles.metricValue}>50+</p>
-                    <p className={styles.metricLabel}>employees impacted</p>
-                  </div>
+                  <Link className={styles.textLink} to={card.href}>
+                    Read case study <span aria-hidden>→</span>
+                  </Link>
                 </div>
-                <Link className={styles.textLink} to="/case-studies/profile-moderation-tool">
-                  Read case study <span aria-hidden>→</span>
-                </Link>
-              </div>
-              <div className={styles.caseVisual}>
-                <img
-                  className={styles.caseThumb}
-                  src="/case-studies/profile-moderation/section-hero.png"
-                  alt="Profile Moderation Tool case study preview"
-                  loading="lazy"
-                />
-              </div>
-            </article>
-
-            <article className={styles.caseCard}>
-              <p className={styles.caseTag}>Dashboard · Notifications · ShareChat</p>
-              <h3 className={styles.caseTitle}>Mastertool Dashboard</h3>
-              <p className={styles.caseDesc}>
-                Bulk notification scheduler and tagging tools that saved 4,000+ man-hours and ₹9.4L per month in
-                operations costs.
-              </p>
-              <div className={styles.metricsRow}>
-                <div>
-                  <p className={styles.metricValue}>₹9.4L</p>
-                  <p className={styles.metricLabel}>saved / month</p>
-                </div>
-                <div>
-                  <p className={styles.metricValue}>4K+</p>
-                  <p className={styles.metricLabel}>man-hours saved</p>
-                </div>
-              </div>
-            </article>
-
-            <article className={styles.caseCard}>
-              <p className={styles.caseTag}>Web · Consumer · ShareChat</p>
-              <h3 className={styles.caseTitle}>Careers &amp; Profile Web Redesign</h3>
-              <p className={styles.caseDesc}>
-                Revamped three key web surfaces — Careers, Explore, and Profile pages — resulting in a measurable lift
-                in daily active users.
-              </p>
-              <div className={styles.metricsRow}>
-                <div>
-                  <p className={styles.metricValue}>+0.24%</p>
-                  <p className={styles.metricLabel}>DAU boost</p>
-                </div>
-              </div>
-            </article>
-
-            <article className={styles.caseCard}>
-              <p className={styles.caseTag}>Freelance · Gifting Platform</p>
-              <h3 className={styles.caseTitle}>RazeHQ — End-to-End UX</h3>
-              <p className={styles.caseDesc}>
-                Full product design from discovery to prototype for a corporate gifting platform — research, IA,
-                wireframes, and high-fidelity screens.
-              </p>
-              <div className={styles.metricsRow}>
-                <div>
-                  <p className={styles.metricValue}>Full</p>
-                  <p className={styles.metricLabel}>UX ownership</p>
-                </div>
-              </div>
-            </article>
-
-            <article className={styles.caseCard}>
-              <p className={styles.caseTag}>Social · Campaign · ShareChat</p>
-              <h3 className={styles.caseTitle}>Moj App Campaign Design System</h3>
-              <p className={styles.caseDesc}>
-                Social media template grids reducing design time from 5 hrs to 2 hrs per asset, enabling campaigns that
-                generated 1M+ impressions.
-              </p>
-              <div className={styles.metricsRow}>
-                <div>
-                  <p className={styles.metricValue}>5→2hrs</p>
-                  <p className={styles.metricLabel}>design time</p>
-                </div>
-                <div>
-                  <p className={styles.metricValue}>1M+</p>
-                  <p className={styles.metricLabel}>impressions</p>
-                </div>
-              </div>
-            </article>
+                <CaseCardImage src={card.imageSrc} alt={card.imageAlt} />
+              </article>
+            ))}
           </div>
         </section>
 
@@ -271,7 +283,7 @@ export function Portfolio() {
               <p>Currently freelancing and open to senior UX / product design roles in product-led companies.</p>
               <div className={styles.skills}>
                 {skills.map((s) => (
-                  <span key={s} className={styles.skillPill}>
+                  <span key={s} className={`${styles.skillPill} ${skillChipStyles[s]}`}>
                     {s}
                   </span>
                 ))}

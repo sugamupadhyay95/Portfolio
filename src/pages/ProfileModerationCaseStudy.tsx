@@ -12,26 +12,34 @@ const DECISION_CARDS = [
   {
     num: "01",
     title: "Autoplay + parallel interaction",
-    desc: "The first video now plays automatically by default, sorted by highest view count. The video panel is independent — moderators can read metadata or answer questions while the video plays.",
-    impact: "↓ ~5s saved per profile on video loading alone",
+    desc: "The first video now plays automatically by default, sorted by highest view count. The video panel is independent — moderators can answer questions while the video plays, eliminating the forced wait.",
+    impact: "~5s saved per profile on video loading alone",
+    beforeSrc: "/case-studies/profile-moderation/decisions/01-before.png",
+    afterSrc: "/case-studies/profile-moderation/decisions/01-after.png",
   },
   {
     num: "02",
     title: "Genre dropdown instead of expanded list",
     desc: "The genre selection was collapsed into a compact dropdown, freeing vertical space and keeping 3+ additional questions visible above the fold at all times.",
     impact: "Space freed for 3+ more questions above the fold",
+    beforeSrc: "/case-studies/profile-moderation/decisions/02-before.png",
+    afterSrc: "/case-studies/profile-moderation/decisions/02-after.png",
   },
   {
     num: "03",
     title: "Complete metadata surface",
     desc: "MCPP score, 30-day number, posts, followers, language, and profile ID are all visible at a glance. No more navigating away from the review to find context.",
     impact: "All context visible without leaving the screen",
+    beforeSrc: "/case-studies/profile-moderation/decisions/03-before.png",
+    afterSrc: "/case-studies/profile-moderation/decisions/03-after.png",
   },
   {
     num: "04",
     title: "Progress visibility",
     desc: "Added completed count alongside remaining in the top bar. Seeing work done — not just work left — sustains moderator focus and morale during long shifts.",
     impact: "Progress motivation, reduces cognitive fatigue",
+    beforeSrc: "/case-studies/profile-moderation/decisions/04-before.png",
+    afterSrc: "/case-studies/profile-moderation/decisions/04-after.png",
   },
 ];
 
@@ -409,11 +417,49 @@ export function ProfileModerationCaseStudy() {
                     className={styles.decisionCard}
                     role="listitem"
                   >
-                    <span className={styles.cardNum}>{card.num}</span>
-                    <div className={styles.cardBody}>
-                      <h3 className={styles.cardTitle}>{card.title}</h3>
-                      <p className={styles.cardDesc}>{card.desc}</p>
-                      <p className={styles.cardImpact}>{card.impact}</p>
+                    <div className={styles.decisionCardContent}>
+                      <span className={styles.cardNum}>{card.num}</span>
+                      <div className={styles.cardBody}>
+                        <h3 className={styles.cardTitle}>{card.title}</h3>
+                        <p className={styles.cardDesc}>{card.desc}</p>
+                        <span className={styles.cardImpactChip}>
+                          <span
+                            className={styles.cardImpactIcon}
+                            aria-hidden="true"
+                          >
+                            ↓
+                          </span>
+                          {card.impact}
+                        </span>
+                      </div>
+                    </div>
+                    <div className={styles.decisionCardVisual}>
+                      <div className={styles.decisionCompare}>
+                        <div className={styles.decisionCompareCol}>
+                          <span className={styles.decisionCompareLabel}>
+                            Before
+                          </span>
+                          <div className={styles.decisionCompareImgWrap}>
+                            <ImagePlaceholder
+                              src={card.beforeSrc}
+                              alt={`${card.title} — before`}
+                              className={styles.decisionCompareImg}
+                            />
+                          </div>
+                        </div>
+                        <div className={styles.decisionCompareCol}>
+                          <span className={styles.decisionCompareLabel}>
+                            After
+                          </span>
+                          <div className={styles.decisionCompareImgWrap}>
+                            <ImagePlaceholder
+                              src={card.afterSrc}
+                              alt={`${card.title} — after`}
+                              className={styles.decisionCompareImg}
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </article>
                 ))}
