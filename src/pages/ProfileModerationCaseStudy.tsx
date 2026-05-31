@@ -457,7 +457,7 @@ export function ProfileModerationCaseStudy() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                     </div>
                   </article>
                 ))}
               </div>
