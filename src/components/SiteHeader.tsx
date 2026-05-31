@@ -4,8 +4,6 @@ import styles from "./SiteHeader.module.css";
 const navLinks = [
   { to: "/#work", label: "Work" },
   { to: "/#about", label: "About" },
-  { to: "/#process", label: "Process" },
-  { to: "/#featured-case", label: "Case Study Guide" },
   { to: "/#contact", label: "Contact" },
 ] as const;
 

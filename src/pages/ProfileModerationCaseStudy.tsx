@@ -221,12 +221,9 @@ export function ProfileModerationCaseStudy() {
               <h3 className={styles.sectionTitleSm}>What is this tool?</h3>
               <Divider />
               <p className={styles.bodyText}>
-                The Profile Moderation Tool is an internal web app used by BPO
-                teams to review user-generated profiles on Moj, India's
-                short-video platform. Moderators assess profiles across multiple
-                dimensions: authenticity, content type, upload frequency,
-                engagement quality, and policy compliance. With 18–20k profiles
-                reviewed daily, even small inefficiencies at the individual
+                The Profile Moderation Tool is an internal web app used by BPO teams to review user-generated profiles on Moj, India's
+                short-video platform. Moderators assess profiles across multiple dimensions, authenticity, content type, upload frequency,
+                engagement quality, and policy compliance. With 18–20k profiles reviewed daily, even small inefficiencies at the individual
                 level compound into significant operational costs.
               </p>
             </div>
@@ -245,7 +242,7 @@ export function ProfileModerationCaseStudy() {
 
         {/* ── 02 / The Problem ────────────────────────────────────── */}
         <section
-          className={styles.section}
+          className={`${styles.section} ${styles.sectionNoDivider}`}
           aria-labelledby="problem-title"
           data-node-id="656:896"
         >

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Portfolio.module.css";
 import { SiteHeader } from "./SiteHeader";
@@ -72,91 +73,282 @@ function CaseCardImage({
   );
 }
 
-const skills = [
-  "UX Research",
-  "Figma",
-  "Interaction Design",
-  "Prototyping",
-  "Usability Testing",
-  "Design Systems",
-  "Clarity Analytics",
-  "Adobe XD",
-  "Motion Design",
-  "Framer",
-  "Canva Systems",
-  "HubSpot",
-] as const;
+type ExpertiseVariant = "research" | "product" | "analytics" | "tools";
 
-const skillChipStyles: Record<(typeof skills)[number], string> = {
-  "UX Research": styles.skillResearch,
-  Figma: styles.skillPrototyping,
-  "Interaction Design": styles.skillWireframing,
-  Prototyping: styles.skillPrototyping,
-  "Usability Testing": styles.skillResearch,
-  "Design Systems": styles.skillDesignSystems,
-  "Clarity Analytics": styles.skillAnalytics,
-  "Adobe XD": styles.skillWireframing,
-  "Motion Design": styles.skillDefault,
-  Framer: styles.skillPrototyping,
-  "Canva Systems": styles.skillDesignSystems,
-  HubSpot: styles.skillDefault,
+const expertiseMainCards: {
+  title: string;
+  variant: Exclude<ExpertiseVariant, "tools">;
+  items: string[];
+}[] = [
+  {
+    title: "Research & Discovery",
+    variant: "research",
+    items: [
+      "User Research",
+      "User Interviews",
+      "User Flows",
+      "Journey Mapping",
+      "Usability Testing",
+    ],
+  },
+  {
+    title: "Product Design",
+    variant: "product",
+    items: [
+      "Interaction Design",
+      "Wireframing",
+      "Prototyping",
+      "SaaS Design",
+      "Design Systems",
+    ],
+  },
+  {
+    title: "Analytics & Optimisation",
+    variant: "analytics",
+    items: [
+      "Microsoft Clarity",
+      "A/B Testing",
+      "User Behaviour Analysis",
+      "Conversion Optimisation",
+    ],
+  },
+];
+
+const designTools = [
+  { label: "Figma", src: "/images/tools/figma.svg" },
+  { label: "Adobe CC", src: "/images/tools/adobe.svg" },
+  { label: "Notion", src: "/images/tools/notion.svg" },
+  { label: "HubSpot", src: "/images/tools/hubspot.svg" },
+  { label: "Clarity", src: "/images/tools/clarity.svg" },
+];
+
+const exploringTools = [
+  { label: "Claude", icon: "claude" as const },
+  { label: "Cursor", icon: "cursor" as const },
+  { label: "Lovable", icon: "lovable" as const },
+  { label: "Coding Basics", icon: "code" as const },
+];
+
+const expertiseTitleClass: Record<ExpertiseVariant, string> = {
+  research: styles.expertiseTitleResearch,
+  product: styles.expertiseTitleProduct,
+  analytics: styles.expertiseTitleAnalytics,
+  tools: styles.expertiseTitleTools,
 };
 
-const experience = [
-  {
-    period: "2024 – Now",
-    role: "Freelance UX / Product Designer",
-    org: "Pillowcase Studio · RazeHQ · Fly My Visa",
-  },
-  {
-    period: "May – Aug 2024",
-    role: "Contract UX Designer",
-    org: "IDX Studios",
-  },
-  {
-    period: "Nov 2023 – Mar 2024",
-    role: "Freelance Designer",
-    org: "Studio Kitzu",
-  },
-  {
-    period: "2022 – 2023",
-    role: "UX Designer",
-    org: "ShareChat",
-  },
-  {
-    period: "2019 – 2022",
-    role: "Visual & Product Designer",
-    org: "ShareChat · Circle App",
-  },
-] as const;
+const expertiseCardTintClass: Record<
+  Exclude<ExpertiseVariant, "tools">,
+  string
+> = {
+  research: styles.expertiseCardResearch,
+  product: styles.expertiseCardProduct,
+  analytics: styles.expertiseCardAnalytics,
+};
 
-const processSteps = [
+function ToolIconRow({
+  tools,
+  renderIcon,
+}: {
+  tools: { label: string; src?: string; icon?: (typeof exploringTools)[number]["icon"] }[];
+  renderIcon?: (tool: (typeof exploringTools)[number]) => ReactNode;
+}) {
+  return (
+    <div className={styles.toolIconRow}>
+      {tools.map((tool) => (
+        <div key={tool.label} className={styles.toolIconItem}>
+          {tool.src ? (
+            <img
+              className={styles.toolIconImg}
+              src={tool.src}
+              alt=""
+              width={32}
+              height={32}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : renderIcon && "icon" in tool && tool.icon ? (
+            <span className={styles.toolIconGraphic} aria-hidden>
+              {renderIcon(tool as (typeof exploringTools)[number])}
+            </span>
+          ) : null}
+          <span className={styles.toolIconLabel}>{tool.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ExploringToolIcon({ icon }: { icon: (typeof exploringTools)[number]["icon"] }) {
+  if (icon === "claude") {
+    return (
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <circle cx="12" cy="12" r="10" fill="#d97706" />
+        <path
+          d="M12 6l1.2 3.7H17l-3 2.2 1.1 3.6L12 13.3 8.9 15.5l1.1-3.6-3-2.2h3.8L12 6z"
+          fill="#fff"
+        />
+      </svg>
+    );
+  }
+
+  if (icon === "cursor") {
+    return (
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <path d="M5 8l7-4 7 4v8l-7 4-7-4V8z" fill="#0a0a0a" />
+        <path d="M12 4v16M5 8l7 4 7-4" stroke="#fff" strokeWidth="1" opacity="0.35" />
+      </svg>
+    );
+  }
+
+  if (icon === "lovable") {
+    return (
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <path
+          d="M12 20s-7-4.5-7-9.5a4 4 0 0 1 7-2.5 4 4 0 0 1 7 2.5C19 15.5 12 20 12 20z"
+          fill="url(#lovableGrad)"
+        />
+        <defs>
+          <linearGradient id="lovableGrad" x1="5" y1="6" x2="19" y2="18">
+            <stop stopColor="#f472b6" />
+            <stop offset="1" stopColor="#fb923c" />
+          </linearGradient>
+        </defs>
+      </svg>
+    );
+  }
+
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="4" fill="#166534" />
+      <path
+        d="M9 8h6M8 12h8M9 16h6"
+        stroke="#fff"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+type ExpTagVariant = "green" | "blue" | "coral" | "purple" | "neutral" | "explore";
+
+type ExperienceEntry = {
+  period: string;
+  role: string;
+  companies: string[];
+  logoSrc: string;
+  logoAlt: string;
+  tags: { label: string; variant: ExpTagVariant }[];
+  exploring?: { label: string }[];
+};
+
+const experience: ExperienceEntry[] = [
   {
-    n: "01",
-    title: "Discover",
-    lines: ["User interviews, stakeholder goals, analytics review,", "competitive audit"],
+    period: "NOV 2024 — PRESENT",
+    role: "Freelance UX / Product Designer",
+    companies: ["Pillowcase Studio", "RazeHQ", "Fly My Visa", "Snout"],
+    logoSrc: "/images/experience/freelance.svg",
+    logoAlt: "Freelance",
+    tags: [
+      { label: "Product Strategy", variant: "green" },
+      { label: "UX Research", variant: "green" },
+      { label: "Interaction Design", variant: "green" },
+    ],
+    exploring: [
+      { label: "Figma Make" },
+      { label: "Claude" },
+      { label: "Cursor" },
+      { label: "Lovable" },
+      { label: "Basic Coding" },
+    ],
   },
   {
-    n: "02",
-    title: "Define",
-    lines: ["Problem framing, user personas, journey maps, jobs-", "to-be-done"],
+    period: "MAY 2024 — AUG 2024",
+    role: "Contract UX Designer",
+    companies: ["Ekai", "IDX Studios"],
+    logoSrc: "/images/experience/contract.jpeg",
+    logoAlt: "Contract UX",
+    tags: [
+      { label: "SaaS Design", variant: "blue" },
+      { label: "User Flows", variant: "blue" },
+      { label: "Motion", variant: "blue" },
+      { label: "Website Design", variant: "blue" },
+    ],
   },
   {
-    n: "03",
-    title: "Ideate",
-    lines: ["Sketching, IA, user flows, design principles, concept", "exploration"],
+    period: "DEC 2023 — FEB 2024",
+    role: "Freelance UX Designer",
+    companies: ["Studio Kitzu"],
+    logoSrc: "/images/experience/studio-kitzu.svg",
+    logoAlt: "Studio Kitzu",
+    tags: [
+      { label: "Figma Templates", variant: "coral" },
+      { label: "Social Campaigns", variant: "coral" },
+    ],
   },
   {
-    n: "04",
-    title: "Design",
-    lines: ["Wireframes → high-fidelity prototypes in Figma, design", "system"],
+    period: "NOV 2020 — FEB 2023",
+    role: "UX / Visual Designer",
+    companies: ["ShareChat"],
+    logoSrc: "/images/experience/sharechat.png",
+    logoAlt: "ShareChat",
+    tags: [
+      { label: "Design Systems", variant: "purple" },
+      { label: "Ops SaaS", variant: "purple" },
+      { label: "Analytics", variant: "purple" },
+    ],
   },
   {
-    n: "05",
-    title: "Validate",
-    lines: ["Usability testing, iteration, dev handoff, post-launch", "metrics"],
+    period: "FEB 2019 — MAY 2020",
+    role: "Graphic / Video Designer",
+    companies: ["Circle App"],
+    logoSrc: "/images/experience/circle-app.png",
+    logoAlt: "Circle App",
+    tags: [
+      { label: "Video Editing", variant: "neutral" },
+      { label: "Hyperlocal Ads", variant: "neutral" },
+      { label: "Broadcasting", variant: "neutral" },
+    ],
   },
-] as const;
+];
+
+const expTagClass: Record<ExpTagVariant, string> = {
+  green: styles.expTagGreen,
+  blue: styles.expTagBlue,
+  coral: styles.expTagCoral,
+  purple: styles.expTagPurple,
+  neutral: styles.expTagNeutral,
+  explore: styles.expTagExplore,
+};
+
+function TimelineIcon({ entry }: { entry: ExperienceEntry }) {
+  return (
+    <span className={styles.timelineIcon}>
+      <img
+        className={styles.timelineLogo}
+        src={entry.logoSrc}
+        alt=""
+        width={36}
+        height={36}
+        loading="lazy"
+        decoding="async"
+      />
+    </span>
+  );
+}
+
+function TimelineCompanies({ companies }: { companies: string[] }) {
+  return (
+    <p className={styles.timelineOrg}>
+      {companies.map((name, index) => (
+        <span key={name}>
+          {index > 0 ? <span className={styles.orgSep}> · </span> : null}
+          <span className={styles.timelineCompany}>{name}</span>
+        </span>
+      ))}
+    </p>
+  );
+}
 
 const HERO_METRICS = [
   { value: "₹9.4L", label: "saved/month at ShareChat" },
@@ -174,8 +366,6 @@ export function Portfolio() {
         <section className={styles.hero} data-node-id="643:1450" aria-label="Introduction">
           <div className={styles.heroLeft} data-node-id="643:1451">
             <div className={styles.heroTag}>
-              <span className={styles.heroTagRule} aria-hidden />
-              <p className={styles.heroTagText}>UX / Product Designer</p>
             </div>
             <h1 className={styles.heroTitle}>
               <span className={styles.heroTitleLine}>Curious about</span>
@@ -186,8 +376,9 @@ export function Portfolio() {
               <span className={styles.heroTitleLine}>about craft.</span>
             </h1>
             <p className={styles.heroBody}>
-              I research, design, and ship digital products that are genuinely useful, turning complex systems into
-              clear, satisfying experiences.
+            I'm a UX & Product Designer simplifying complex workflows and build products
+            people actually enjoy using. I combine research, product thinking, and AI-assisted workflows
+            to move from insights to solutions faster.
             </p>
             <div className={styles.heroCtas}>
               <a className={styles.btnPrimary} href="#work">
@@ -229,8 +420,6 @@ export function Portfolio() {
 
         <section className={styles.sectionMuted} id="work" data-node-id="643:1488">
           <div className={styles.sectionLabel}>
-            <span className={styles.sectionRule} aria-hidden />
-            <span className={styles.sectionKicker}>Selected Work</span>
           </div>
           <h2 className={styles.sectionTitle}>Case Studies</h2>
 
@@ -263,93 +452,155 @@ export function Portfolio() {
 
         <section className={styles.section} id="about" data-node-id="643:1500">
           <div className={styles.sectionLabel}>
-            <span className={styles.sectionRule} aria-hidden />
-            <span className={styles.sectionKicker}>Who I Am</span>
           </div>
-          <h2 className={styles.sectionTitle}>A designer who measures impact</h2>
+          <h2 className={styles.sectionTitle}>About Me</h2>
 
           <div className={styles.aboutGrid}>
             <div className={styles.aboutCopy}>
               <p>
-                I&apos;ve been designing digital products since 2019, working across the full spectrum from consumer
-                apps to enterprise SaaS. What drives me is the moment a complex workflow becomes effortless — not
-                through decoration, but through understanding how people actually think and work.
+              I'm Sugam, A UX & Product Designer who design digital experiences that simplify complex workflows,
+              reduce friction and create meaningful impact for both users and businesses.
+
               </p>
               <p>
-                At ShareChat I embedded with operations teams to understand moderation workflows firsthand. That
-                fieldwork led directly to designs that saved millions in monthly costs. I believe the best UX insights
-                come from observing real behaviour, not assumptions.
+              Over the last 6+ years, I've worked across the full design process, from user research
+              and workflow mapping to interaction design, prototyping, and visual execution. I enjoy diving deep into user behaviour,
+              understanding how people actually work and translating those insights into experiences that solve real problems.
+              My work spans consumer products, SaaS platforms, and operational tools where efficiency, usability
+              and business impact matter equally.
               </p>
-              <p>Currently freelancing and open to senior UX / product design roles in product-led companies.</p>
-              <div className={styles.skills}>
-                {skills.map((s) => (
-                  <span key={s} className={`${styles.skillPill} ${skillChipStyles[s]}`}>
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className={styles.timeline}>
-              {experience.map((row) => (
-                <div key={row.period} className={styles.timelineRow}>
-                  <span className={styles.timelinePeriod}>{row.period}</span>
-                  <div>
-                    <p className={styles.timelineRole}>{row.role}</p>
-                    <p className={styles.timelineOrg}>{row.org}</p>
+              <p>At the core of my work is a simple belief, The best products feel effortless.
+                </p>
+              <div className={styles.expertise}>
+                <h3 className={styles.expertiseHeading}>Expertise</h3>
+                <div className={styles.expertiseGrid}>
+                  <div className={styles.expertiseMainRow}>
+                    {expertiseMainCards.map((card) => (
+                      <div
+                        key={card.title}
+                        className={`${styles.expertiseCard} ${expertiseCardTintClass[card.variant]}`}
+                      >
+                        <h4
+                          className={`${styles.expertiseCardTitle} ${expertiseTitleClass[card.variant]}`}
+                        >
+                          {card.title}
+                        </h4>
+                        <ul className={styles.expertiseList}>
+                          {card.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                  <div className={styles.expertiseToolsBlock}>
+                    <h4
+                      className={`${styles.expertiseCardTitle} ${expertiseTitleClass.tools}`}
+                    >
+                      Tools
+                    </h4>
+                    <ToolIconRow tools={designTools} />
+                  </div>
+                  <div className={styles.expertiseExploringBlock}>
+                    <h4
+                      className={`${styles.expertiseCardTitle} ${styles.expertiseTitleExploring}`}
+                    >
+                      Currently Exploring
+                    </h4>
+                    <ToolIconRow
+                      tools={exploringTools}
+                      renderIcon={(tool) => <ExploringToolIcon icon={tool.icon} />}
+                    />
                   </div>
                 </div>
+              </div>
+            </div>
+            <div className={styles.experienceTimeline} aria-label="Work experience">
+              <div className={styles.timelineTrack} aria-hidden="true" />
+              {experience.map((entry) => (
+                <article key={entry.period} className={styles.timelineEntry}>
+                  <div className={styles.timelineMarker}>
+                    <TimelineIcon entry={entry} />
+                  </div>
+                  <div className={styles.timelineContent}>
+                    <p className={styles.timelinePeriod}>{entry.period}</p>
+                    <h3 className={styles.timelineRole}>{entry.role}</h3>
+                    <TimelineCompanies companies={entry.companies} />
+                    <div className={styles.timelineTags}>
+                      {entry.tags.map((tag) => (
+                        <span
+                          key={tag.label}
+                          className={`${styles.expTag} ${expTagClass[tag.variant]}`}
+                        >
+                          {tag.label}
+                        </span>
+                      ))}
+                    </div>
+                    {entry.exploring ? (
+                      <div className={styles.timelineExploring}>
+                        <span className={styles.exploringLabel}>
+                          Currently exploring
+                        </span>
+                        <div className={styles.timelineTags}>
+                          {entry.exploring.map((item) => (
+                            <span
+                              key={item.label}
+                              className={`${styles.expTag} ${styles.expTagExplore}`}
+                            >
+                              {item.label}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                </article>
               ))}
             </div>
           </div>
-        </section>
-
-        <section className={styles.sectionMuted} id="process" data-node-id="643:1568">
-          <div className={styles.sectionLabel}>
-            <span className={styles.sectionRule} aria-hidden />
-            <span className={styles.sectionKicker}>How I Work</span>
-          </div>
-          <h2 className={styles.sectionTitle}>My design process</h2>
-
-          <div className={styles.process} data-node-id="643:1574">
-            <div className={styles.processLine} aria-hidden />
-            <ol className={styles.processSteps}>
-              {processSteps.map((step) => (
-                <li key={step.n} className={styles.processStep}>
-                  <div className={styles.stepNum}>{step.n}</div>
-                  <p className={styles.stepTitle}>{step.title}</p>
-                  <p className={styles.stepDesc}>
-                    {step.lines[0]}
-                    <br />
-                    {step.lines[1]}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section className={styles.sectionMuted} id="case-study-guide" aria-labelledby="case-study-guide-title">
-          <div className={styles.sectionLabel}>
-            <span className={styles.sectionRule} aria-hidden />
-            <span className={styles.sectionKicker}>Resources</span>
-          </div>
-          <h2 className={styles.sectionTitle} id="case-study-guide-title">
-            Case Study Guide
-          </h2>
-          <p className={styles.guideLead}>
-            Use the navigation label from your Figma file — this anchor matches the &quot;Case Study Guide&quot; nav item
-            for in-page jumps.
-          </p>
         </section>
 
         <section className={styles.contact} id="contact" data-node-id="643:1595">
-          <div className={styles.sectionLabelCenter}>
-            <span className={styles.sectionKicker}>Get in Touch</span>
+          <h2 className={styles.sectionTitleCenter}>
+            &ldquo;I like to read people and love designing for them.&rdquo;
+          </h2>
+          <div className={styles.contactConnect}>
+            <div className={styles.sectionLabelCenter}>
+              <span className={styles.sectionKicker}>Get in Touch</span>
+            </div>
+            <div className={styles.contactLinks}>
+              <a
+                className={styles.contactLink}
+                href="mailto:sugam95.upadhyay@gmail.com"
+              >
+                <img
+                  className={styles.contactIcon}
+                  src="/images/contact/gmail.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                  decoding="async"
+                />
+                sugam95.upadhyay@gmail.com
+              </a>
+              <a
+                className={styles.contactLink}
+                href="https://www.linkedin.com/in/sugamupadhyay/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  className={styles.contactIcon}
+                  src="/images/contact/linkedin.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                  decoding="async"
+                />
+                LinkedIn
+              </a>
+            </div>
           </div>
-          <h2 className={styles.sectionTitleCenter}>Open for new opportunities</h2>
-          <a className={styles.emailLink} href="mailto:sugam95.upadhyay@gmail.com">
-            sugam95.upadhyay@gmail.com
-          </a>
           <p className={styles.contactNote}>
             Available for full-time roles, contracts, and freelance projects · Based in India, open to remote
           </p>

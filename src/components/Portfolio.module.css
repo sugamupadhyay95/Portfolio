@@ -525,86 +525,326 @@
   color: var(--text-body);
 }
 
-.skills {
+/* ——— Expertise ——— */
+.expertise {
+  margin-top: 8px;
+}
+
+.expertiseHeading {
+  margin: 0 0 16px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-heading);
+}
+
+.expertiseGrid {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
 }
 
-.skillPill {
-  display: inline-flex;
-  padding: 6.4px 17px;
-  border-radius: 2px;
-  font-size: 12.5px;
-  line-height: 21.22px;
-  letter-spacing: 0.499px;
+.expertiseMainRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
-.skillResearch {
-  background: var(--chip-research-bg);
+.expertiseCard {
+  padding: 16px 14px;
+  background: var(--bg-surface);
+  border-radius: 8px;
+}
+
+.expertiseMainRow .expertiseCard {
+  border: 1px solid var(--border-default);
+}
+
+.expertiseCardResearch {
+  box-shadow: 0 6px 22px color-mix(in srgb, var(--chip-research-text) 10%, transparent);
+}
+
+.expertiseCardProduct {
+  box-shadow: 0 6px 22px color-mix(in srgb, var(--chip-wireframing-text) 10%, transparent);
+}
+
+.expertiseCardAnalytics {
+  box-shadow: 0 6px 22px color-mix(in srgb, var(--chip-prototyping-text) 10%, transparent);
+}
+
+.expertiseCardTitle {
+  margin: 0 0 10px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text-heading);
+}
+
+.expertiseTitleResearch {
   color: var(--chip-research-text);
 }
 
-.skillWireframing {
-  background: var(--chip-wireframing-bg);
+.expertiseTitleProduct {
   color: var(--chip-wireframing-text);
 }
 
-.skillPrototyping {
-  background: var(--chip-prototyping-bg);
+.expertiseTitleAnalytics {
   color: var(--chip-prototyping-text);
 }
 
-.skillDesignSystems {
-  background: var(--chip-design-systems-bg);
-  color: var(--chip-design-systems-text);
+.expertiseTitleTools {
+  color: var(--text-heading);
 }
 
-.skillAnalytics {
-  background: var(--chip-analytics-bg);
+.expertiseTitleExploring {
   color: var(--chip-analytics-text);
 }
 
-.skillDefault {
-  background: var(--chip-default-bg);
-  color: var(--chip-default-text);
-  border: 1px solid var(--chip-default-border);
+.expertiseList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-body);
 }
 
-.timeline {
+.toolIconRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+
+.toolIconItem {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 56px;
 }
 
-.timelineRow {
+.toolIconImg,
+.toolIconGraphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.toolIconImg {
+  object-fit: contain;
+}
+
+.toolIconLabel {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-body);
+  text-align: center;
+}
+
+.toolIconGraphic svg {
+  width: 32px;
+  height: 32px;
+}
+
+.expertiseToolsBlock,
+.expertiseExploringBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* ——— Experience timeline (right column) ——— */
+.experienceTimeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.92rem;
+}
+
+.timelineTrack {
+  position: absolute;
+  left: 17px;
+  top: 28px;
+  bottom: 28px;
+  width: 0;
+  border-left: 1px dashed var(--border-default);
+  pointer-events: none;
+}
+
+.timelineEntry {
   display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 24px;
-  padding: 20px 0 21px;
-  border-bottom: 1px solid var(--about-timeline-divider);
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  padding: 22px 0;
+}
+
+.timelineEntry:last-child {
+  padding-bottom: 0;
+}
+
+.timelineEntry:first-child {
+  padding-top: 0;
+}
+
+.timelineMarker {
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.timelineIcon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--border-default) 80%, transparent);
+}
+
+.timelineLogo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.timelineContent {
+  min-width: 0;
 }
 
 .timelinePeriod {
-  font-size: 11.5px;
-  line-height: 19.58px;
-  letter-spacing: 0.691px;
-  color: var(--about-timeline-year);
-  padding-top: 3px;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-metadata);
 }
 
 .timelineRole {
-  margin: 0;
-  font-weight: 500;
-  font-size: 15.2px;
-  line-height: 25.84px;
+  margin: 6px 0 4px;
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--text-heading);
 }
 
 .timelineOrg {
-  margin: 4px 0 0;
-  font-size: 13.1px;
-  line-height: 22.3px;
+  margin: 0 0 12px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  line-height: 1.45;
   color: var(--text-muted);
+}
+
+.timelineCompany {
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.orgSep {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.timelineTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.experienceTimeline .expTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-body);
+}
+
+.expTagGreen {
+  color: var(--chip-research-text);
+  border-color: color-mix(in srgb, var(--chip-research-text) 32%, var(--border-default));
+  background: color-mix(in srgb, var(--chip-research-bg) 65%, transparent);
+}
+
+.expTagBlue {
+  color: var(--chip-wireframing-text);
+  border-color: color-mix(in srgb, var(--chip-wireframing-text) 32%, var(--border-default));
+  background: color-mix(in srgb, var(--chip-wireframing-bg) 65%, transparent);
+}
+
+.expTagCoral {
+  color: #c45c4a;
+  border-color: color-mix(in srgb, #c45c4a 35%, var(--border-default));
+  background: color-mix(in srgb, #fde8e4 70%, transparent);
+}
+
+.expTagPurple {
+  color: var(--chip-analytics-text);
+  border-color: color-mix(in srgb, var(--chip-analytics-text) 32%, var(--border-default));
+  background: color-mix(in srgb, var(--chip-analytics-bg) 65%, transparent);
+}
+
+.expTagNeutral {
+  color: var(--text-muted);
+  border-color: var(--border-default);
+  background: transparent;
+}
+
+.expTagExplore {
+  color: var(--chip-prototyping-text);
+  border-color: color-mix(in srgb, var(--chip-prototyping-text) 45%, var(--border-default));
+  background: transparent;
+}
+
+.timelineExploring {
+  margin-top: 4px;
+}
+
+.experienceTimeline .exploringLabel {
+  display: block;
+  margin: 12px 0 8px;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.experienceTimeline .timelineTags {
+  gap: 6px;
 }
 
 /* ——— Process ——— */
@@ -680,36 +920,67 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
+  gap: 0;
 }
 
-.sectionLabelCenter {
+.contactConnect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.contact .sectionLabelCenter {
   min-height: 19px;
+}
+
+.contact .sectionLabelCenter .sectionKicker {
+  margin-left: 0;
 }
 
 .sectionTitleCenter {
   margin: 0;
   font-family: var(--font-serif);
-  font-weight: 700;
+  font-weight: 400;
+  font-style: italic;
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.15;
   letter-spacing: -0.96px;
-  color: var(--text-heading);
+  color: #166534;
 }
 
-.emailLink {
-  margin-top: 32px;
-  font-family: var(--font-serif);
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 68px;
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 28px 40px;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: clamp(15px, 2vw, 18px);
+  font-weight: 500;
+  line-height: 1.4;
   color: var(--text-heading);
   border-bottom: 2px solid var(--text-heading);
   padding-bottom: 4px;
 }
 
-.emailLink:hover {
+.contactLink:hover {
   color: var(--text-muted);
   border-color: var(--text-muted);
+}
+
+.contactIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
 .contactNote {
@@ -777,6 +1048,10 @@
     grid-template-columns: 1fr;
   }
 
+  .expertiseMainRow {
+    grid-template-columns: 1fr;
+  }
+
   .processLine {
     display: none;
   }
@@ -809,8 +1084,18 @@
     max-width: 320px;
   }
 
-  .timelineRow {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .timelineEntry {
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+    padding: 20px 0;
+  }
+
+  .timelineTrack {
+    left: 15px;
+  }
+
+  .timelineIcon {
+    width: 32px;
+    height: 32px;
   }
 }
