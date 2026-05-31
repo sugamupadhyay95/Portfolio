@@ -8,6 +8,13 @@
   color: var(--text-body);
 }
 
+#top,
+#work,
+#about,
+#contact {
+  scroll-margin-top: 72px;
+}
+
 /* ——— Hero ——— */
 .hero {
   display: grid;

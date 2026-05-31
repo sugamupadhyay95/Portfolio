@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, type ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Portfolio.module.css";
 import { SiteHeader } from "./SiteHeader";
+import { scrollToSection } from "../utils/scrollToSection";
 
 const WORK_CARDS = [
   {
@@ -358,6 +359,15 @@ const HERO_METRICS = [
 ] as const;
 
 export function Portfolio() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.slice(1);
+    const frame = requestAnimationFrame(() => scrollToSection(id));
+    return () => cancelAnimationFrame(frame);
+  }, [hash]);
+
   return (
     <div className={styles.frame} data-node-id="643:1449">
       <SiteHeader />
