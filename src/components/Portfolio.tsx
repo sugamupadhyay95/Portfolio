@@ -19,6 +19,19 @@ const WORK_CARDS = [
     ],
   },
   {
+    tag: "Case Study 02 · Client Project · B2B · 2025",
+    title: "Giftbox — Corporate Gifting, Rebuilt for Trust",
+    desc: "End-to-end product design for RazeHQ's B2B gifting platform — quote-first UX, five production-ready screens, and a fully tokenised design system in six weeks.",
+    imageSrc: "/case-studies/giftbox/Giftbox_raze_.png",
+    imageAlt: "Giftbox case study preview — B2B corporate gifting platform",
+    href: "/case-studies/giftbox",
+    metrics: [
+      { value: "5", label: "screens designed" },
+      { value: "6 wks", label: "end-to-end" },
+      { value: "Quote-first", label: "UX model" },
+    ],
+  },
+  {
     tag: "Dashboard · Notifications · ShareChat",
     title: "Mastertool Dashboard",
     desc: "Bulk notification scheduler and tagging tools that saved 4,000+ man-hours and ₹9.4L per month in operations costs.",
