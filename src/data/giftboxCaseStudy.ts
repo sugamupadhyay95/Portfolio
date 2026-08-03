@@ -165,7 +165,6 @@ export const giftboxCaseStudy = {
         body: "Step 1 is about who you are. Step 2 is about what you need. That distinction — identity then intent — reduces cognitive load and makes each step feel completable in under a minute.",
         images: [
           { src: `${GIFTBOX_ASSETS}/Form_1.png`, alt: "Giftbox quote form — step 1, company identity" },
-          { src: `${GIFTBOX_ASSETS}/Form_2.png`, alt: "Giftbox quote form — step 2, preferences and intent" },
         ],
         callouts: [
           {
@@ -219,7 +218,6 @@ export const giftboxCaseStudy = {
       { src: `${GIFTBOX_ASSETS}/Combo_Boxes.png`, alt: "Product listing screen" },
       { src: `${GIFTBOX_ASSETS}/Giftbox_raze.png`, alt: "Homepage with Maya assistant" },
       { src: `${GIFTBOX_ASSETS}/Form_1.png`, alt: "Quote form step 1" },
-      { src: `${GIFTBOX_ASSETS}/Form_2.png`, alt: "Quote form step 2" },
     ],
   },
 } as const;
