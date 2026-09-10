@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { Portfolio } from "./components/Portfolio";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { ProfileModerationCaseStudy } from "./pages/ProfileModerationCaseStudy";
 import { GiftboxCaseStudy } from "./pages/GiftboxCaseStudy";
 import styles from "./App.module.css";
@@ -8,6 +9,7 @@ import styles from "./App.module.css";
 function App() {
   return (
     <div className={styles.app}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/case-studies/profile-moderation-tool" element={<ProfileModerationCaseStudy />} />
