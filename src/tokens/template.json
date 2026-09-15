@@ -1,0 +1,64 @@
+{
+  "theme": {
+    "name": "Lavender template",
+    "description": "Harrison Wheeler–inspired personal site system with dark and light modes"
+  },
+  "layout": {
+    "max": "1320px",
+    "gap": 120,
+    "gutter": 32,
+    "radius": 16,
+    "radiusSm": 10,
+    "radiusPill": 999,
+    "breakpoints": { "sm": 560, "nav": 860 }
+  },
+  "spacing": [8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 40, 48, 80, 96, 120],
+  "motion": {
+    "ease": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "hoverLift": "translateY(-1px)",
+    "revealDistance": 30,
+    "durations": {
+      "hover": "150ms",
+      "color": "200ms",
+      "nav": "250ms",
+      "reveal": "750ms",
+      "intro": "1.4s"
+    }
+  },
+  "dark": {
+    "bg": "#0d0c11",
+    "surface": "#16151c",
+    "surface2": "#1f1d26",
+    "border": "#2a2833",
+    "borderSoft": "#211f29",
+    "text": "#ece9f1",
+    "textMuted": "#a39fb0",
+    "textDim": "#75717f",
+    "primary": "#d0bcff",
+    "primaryHover": "#e3d6ff",
+    "onPrimary": "#381e72",
+    "lightPink": "#ffd8e4",
+    "mint": "#ffd8e4",
+    "navPill": "rgba(13, 12, 17, 0.6)",
+    "ghostBg": "rgba(255, 255, 255, 0.08)",
+    "ghostBorder": "rgba(255, 255, 255, 0.18)"
+  },
+  "light": {
+    "bg": "#ffffff",
+    "surface": "#f6f5f8",
+    "surface2": "#f1f0f3",
+    "border": "#e7e5ea",
+    "borderSoft": "#efeef2",
+    "text": "#17151b",
+    "textMuted": "#5c5866",
+    "textDim": "#8b8794",
+    "primary": "#5b3df5",
+    "primaryHover": "#6d52f7",
+    "onPrimary": "#ffffff",
+    "lightPink": "#c45d7a",
+    "mint": "#c45d7a",
+    "navPill": "rgba(255, 255, 255, 0.72)",
+    "ghostBg": "rgba(23, 21, 27, 0.06)",
+    "ghostBorder": "rgba(23, 21, 27, 0.14)"
+  }
+}

@@ -4,6 +4,7 @@ import { Portfolio } from "./components/Portfolio";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { ProfileModerationCaseStudy } from "./pages/ProfileModerationCaseStudy";
 import { GiftboxCaseStudy } from "./pages/GiftboxCaseStudy";
+import { StyleGuide } from "./pages/StyleGuide";
 import styles from "./App.module.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Portfolio />} />
+        <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="/case-studies/profile-moderation-tool" element={<ProfileModerationCaseStudy />} />
         <Route path="/case-studies/giftbox" element={<GiftboxCaseStudy />} />
       </Routes>

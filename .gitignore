@@ -3,3 +3,6 @@ dist
 .DS_Store
 *.local
 .tools
+
+# Downloaded reference site (contains third-party tokens/fonts)
+Portfolio revamp/

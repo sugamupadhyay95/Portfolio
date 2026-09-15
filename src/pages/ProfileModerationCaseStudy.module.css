@@ -5,8 +5,9 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-dawn-pink);
-  color: var(--color-armadillo);
+  background-color: var(--bg);
+  color: var(--text);
+  padding-top: 88px;
 }
 
 /* ─── Page chrome (breadcrumb bar) ──────────────────────────────── */

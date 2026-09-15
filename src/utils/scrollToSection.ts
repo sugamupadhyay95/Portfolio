@@ -1,4 +1,4 @@
-const NAV_OFFSET_PX = 72;
+const NAV_OFFSET_PX = 96;
 
 export function scrollToSection(id: string) {
   const el = document.getElementById(id);

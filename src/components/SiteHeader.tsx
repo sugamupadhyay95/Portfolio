@@ -1,42 +1,85 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { HashNavLink } from "./HashNavLink";
+import { useTheme } from "../theme/ThemeProvider";
 import styles from "./SiteHeader.module.css";
 
-/** Replace with your resume PDF path or URL when ready (e.g. /resume.pdf or a hosted link). */
 export const RESUME_PDF_URL = "/resume.pdf";
 
 const navLinks = [
-  { to: "/#work", label: "Work" },
-  { to: "/#about", label: "About" },
-  { to: "/#contact", label: "Contact" },
+  { to: "/#work", label: "Work", hash: "#work" },
+  { to: "/#about", label: "About", hash: "#about" },
+  { to: "/#contact", label: "Contact", hash: "#contact" },
 ] as const;
 
 export function SiteHeader() {
+  const { pathname, hash } = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname, hash]);
+
+  const isActive = (itemHash: string) => pathname === "/" && hash === itemHash;
+
   return (
-    <header className={styles.nav} data-node-id="643:1613">
-      <HashNavLink className={styles.brand} to="/#top">
-        Sugam Upadhyay
-      </HashNavLink>
-      <nav aria-label="Primary">
-        <ul className={styles.navList}>
+    <header
+      className={`${styles.nav} ${scrolled ? styles.scrolled : ""} ${open ? styles.open : ""}`}
+    >
+      <div className={styles.inner}>
+        <HashNavLink className={styles.logo} to="/#top">
+          Sugam Upadhyay
+        </HashNavLink>
+
+        <button
+          className={styles.toggle}
+          type="button"
+          aria-label="Menu"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav className={styles.links} aria-label="Primary">
           {navLinks.map((item) => (
-            <li key={item.to}>
-              <HashNavLink className={styles.navLink} to={item.to}>
-                {item.label}
-              </HashNavLink>
-            </li>
-          ))}
-          <li>
-            <a
-              className={styles.navLink}
-              href={RESUME_PDF_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <HashNavLink
+              key={item.to}
+              className={`${styles.link} ${isActive(item.hash) ? styles.active : ""}`}
+              to={item.to}
             >
-              Resume
-            </a>
-          </li>
-        </ul>
-      </nav>
+              {item.label}
+            </HashNavLink>
+          ))}
+          <a
+            className={styles.link}
+            href={RESUME_PDF_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Resume
+          </a>
+          <button
+            className={styles.themeBtn}
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {theme === "dark" ? "Light" : "Dark"}
+          </button>
+        </nav>
+      </div>
     </header>
   );
 }

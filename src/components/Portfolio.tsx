@@ -2,6 +2,8 @@ import { useEffect, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Portfolio.module.css";
 import { SiteHeader } from "./SiteHeader";
+import { Button } from "./ui/Button";
+import { InView, Reveal } from "./ui/Reveal";
 import { scrollToSection } from "../utils/scrollToSection";
 
 const WORK_CARDS = [
@@ -53,39 +55,6 @@ const WORK_CARDS = [
     metrics: [{ value: "+0.24%", label: "DAU boost" }],
   },
 ];
-
-function CaseCardImage({
-  src,
-  alt,
-}: {
-  src?: string;
-  alt: string;
-}) {
-  return (
-    <div
-      className={styles.caseVisual}
-      data-placeholder={src ? undefined : alt}
-    >
-      {src ? (
-        <img
-          className={styles.caseThumb}
-          src={src}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).style.display = "none";
-            (e.currentTarget.parentElement as HTMLElement).setAttribute(
-              "data-placeholder",
-              alt
-            );
-          }}
-        />
-      ) : null}
-      <span className={styles.casePlaceholderLabel}>{alt}</span>
-    </div>
-  );
-}
 
 type ExpertiseVariant = "research" | "product" | "analytics" | "tools";
 
@@ -233,7 +202,7 @@ function ExploringToolIcon({ icon }: { icon: (typeof exploringTools)[number]["ic
 
   return (
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect x="3" y="3" width="18" height="18" rx="4" fill="#166534" />
+      <rect x="3" y="3" width="18" height="18" rx="4" fill="#5b3df5" />
       <path
         d="M9 8h6M8 12h8M9 16h6"
         stroke="#fff"
@@ -244,16 +213,12 @@ function ExploringToolIcon({ icon }: { icon: (typeof exploringTools)[number]["ic
   );
 }
 
-type ExpTagVariant = "green" | "blue" | "coral" | "purple" | "neutral" | "explore";
-
 type ExperienceEntry = {
   period: string;
   role: string;
   companies: string[];
   logoSrc: string;
   logoAlt: string;
-  tags: { label: string; variant: ExpTagVariant }[];
-  exploring?: { label: string }[];
 };
 
 const experience: ExperienceEntry[] = [
@@ -263,18 +228,6 @@ const experience: ExperienceEntry[] = [
     companies: ["Pillowcase Studio", "RazeHQ", "Fly My Visa", "Snout"],
     logoSrc: "/images/experience/freelance.svg",
     logoAlt: "Freelance",
-    tags: [
-      { label: "Product Strategy", variant: "green" },
-      { label: "UX Research", variant: "green" },
-      { label: "Interaction Design", variant: "green" },
-    ],
-    exploring: [
-      { label: "Figma Make" },
-      { label: "Claude" },
-      { label: "Cursor" },
-      { label: "Lovable" },
-      { label: "Basic Coding" },
-    ],
   },
   {
     period: "MAY 2024 — AUG 2024",
@@ -282,12 +235,6 @@ const experience: ExperienceEntry[] = [
     companies: ["Ekai", "IDX Studios"],
     logoSrc: "/images/experience/contract.jpeg",
     logoAlt: "Contract UX",
-    tags: [
-      { label: "SaaS Design", variant: "blue" },
-      { label: "User Flows", variant: "blue" },
-      { label: "Motion", variant: "blue" },
-      { label: "Website Design", variant: "blue" },
-    ],
   },
   {
     period: "DEC 2023 — FEB 2024",
@@ -295,10 +242,6 @@ const experience: ExperienceEntry[] = [
     companies: ["Studio Kitzu"],
     logoSrc: "/images/experience/studio-kitzu.svg",
     logoAlt: "Studio Kitzu",
-    tags: [
-      { label: "Figma Templates", variant: "coral" },
-      { label: "Social Campaigns", variant: "coral" },
-    ],
   },
   {
     period: "NOV 2020 — FEB 2023",
@@ -306,11 +249,6 @@ const experience: ExperienceEntry[] = [
     companies: ["ShareChat"],
     logoSrc: "/images/experience/sharechat.png",
     logoAlt: "ShareChat",
-    tags: [
-      { label: "Design Systems", variant: "purple" },
-      { label: "Ops SaaS", variant: "purple" },
-      { label: "Analytics", variant: "purple" },
-    ],
   },
   {
     period: "FEB 2019 — MAY 2020",
@@ -318,51 +256,8 @@ const experience: ExperienceEntry[] = [
     companies: ["Circle App"],
     logoSrc: "/images/experience/circle-app.png",
     logoAlt: "Circle App",
-    tags: [
-      { label: "Video Editing", variant: "neutral" },
-      { label: "Hyperlocal Ads", variant: "neutral" },
-      { label: "Broadcasting", variant: "neutral" },
-    ],
   },
 ];
-
-const expTagClass: Record<ExpTagVariant, string> = {
-  green: styles.expTagGreen,
-  blue: styles.expTagBlue,
-  coral: styles.expTagCoral,
-  purple: styles.expTagPurple,
-  neutral: styles.expTagNeutral,
-  explore: styles.expTagExplore,
-};
-
-function TimelineIcon({ entry }: { entry: ExperienceEntry }) {
-  return (
-    <span className={styles.timelineIcon}>
-      <img
-        className={styles.timelineLogo}
-        src={entry.logoSrc}
-        alt=""
-        width={36}
-        height={36}
-        loading="lazy"
-        decoding="async"
-      />
-    </span>
-  );
-}
-
-function TimelineCompanies({ companies }: { companies: string[] }) {
-  return (
-    <p className={styles.timelineOrg}>
-      {companies.map((name, index) => (
-        <span key={name}>
-          {index > 0 ? <span className={styles.orgSep}> · </span> : null}
-          <span className={styles.timelineCompany}>{name}</span>
-        </span>
-      ))}
-    </p>
-  );
-}
 
 const HERO_METRICS = [
   { value: "₹9.4L", label: "saved/month at ShareChat" },
@@ -370,6 +265,12 @@ const HERO_METRICS = [
   { value: "4K+", label: "man-hours saved by design" },
   { value: "1M+", label: "campaign impressions" },
 ] as const;
+
+function careerYear(period: string) {
+  if (/PRESENT/i.test(period)) return "2026";
+  const years = period.match(/\d{4}/g);
+  return years ? years[0] : period;
+}
 
 export function Portfolio() {
   const { hash } = useLocation();
@@ -386,97 +287,170 @@ export function Portfolio() {
       <SiteHeader />
 
       <main id="top">
-        <section className={styles.hero} data-node-id="643:1450" aria-label="Introduction">
-          <div className={styles.heroLeft} data-node-id="643:1451">
-            <div className={styles.heroTag}>
-            </div>
-            <h1 className={styles.heroTitle}>
-              <span className={styles.heroTitleLine}>Curious about</span>
-              <span className={styles.heroTitleLine}>
-                <span className={styles.heroTitleAccent}>people,</span>
-                <span className={styles.heroTitleRest}> Obsessive</span>
-              </span>
-              <span className={styles.heroTitleLine}>about craft.</span>
+        <section className={styles.hero} aria-label="Introduction">
+          <div className={`${styles.heroContent} container`}>
+            <h1 className={styles.heroName}>
+              Sugam
+              <br className={styles.nameBreak} /> Upadhyay
             </h1>
-            <p className={styles.heroBody}>
-            I'm a UX & Product Designer simplifying complex workflows and build products
-            people actually enjoy using. I combine research, product thinking, and AI-assisted workflows
-            to move from insights to solutions faster.
+            <p className={styles.lede}>
+            UX designer simplifying complex products and AI-assisted workflows.
             </p>
-            <div className={styles.heroCtas}>
-              <a className={styles.btnPrimary} href="#work">
-                View Work
-              </a>
-              <a className={styles.btnOutline} href="#contact">
-                Let&apos;s Talk
-              </a>
+            <div className={styles.heroActions}>
+              <Button href="#work">View work →</Button>
+              <Button variant="ghost" href="#contact">
+                Let&apos;s talk
+              </Button>
             </div>
           </div>
-
-          <div className={styles.heroRight} data-node-id="643:1465">
-            <img
-              className={styles.heroPortrait}
-              src="/images/hero-stamp.png"
-              alt="Portrait stamp illustration — 6+ years of design experience"
-              width={520}
-              height={520}
-              loading="eager"
-              decoding="async"
-            />
-          </div>
         </section>
 
-        <section
-          className={styles.metricsSection}
-          aria-label="Impact metrics"
-          data-node-id="643:1466"
-        >
-          <div className={styles.statsGrid}>
-            {HERO_METRICS.map((stat) => (
-              <div key={stat.label} className={styles.statCard}>
-                <p className={styles.statValue}>{stat.value}</p>
-                <p className={styles.statLabel}>{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.sectionMuted} id="work" data-node-id="643:1488">
-          <div className={styles.sectionLabel}>
-          </div>
-          <h2 className={styles.sectionTitle}>Case Studies</h2>
-
-          <div className={styles.workGrid} data-node-id="643:1494">
-            {WORK_CARDS.map((card) => (
-              <article key={card.title} className={styles.caseCard}>
-                <div className={styles.caseCardBody}>
-                  <p className={styles.caseTag}>{card.tag}</p>
-                  <Link to={card.href} className={styles.featuredTitleLink}>
-                    <h3 className={styles.caseTitle}>{card.title}</h3>
-                  </Link>
-                  <p className={styles.caseDesc}>{card.desc}</p>
-                  <div className={styles.metricsRow}>
-                    {card.metrics.map((m) => (
-                      <div key={m.label}>
-                        <p className={styles.metricValue}>{m.value}</p>
-                        <p className={styles.metricLabel}>{m.label}</p>
-                      </div>
-                    ))}
+        <section className={`${styles.belief} container`} aria-label="About and career">
+          <div className={styles.beliefGrid}>
+            <div className={styles.beliefText}>
+              <Reveal>
+                <p className={styles.beliefLead}>
+                 Product thinker, following curiosity into systems, AI, and code.
+                  Over the last 5 years, I’ve worked on enterprise tools and startup products, shaping flows, interfaces, and systems with founders and developers. Building AI-first design system and agents to cut repetitive work and spend more time on product problems.
+             
+                </p>
+                <Button variant="ghost" href="#about" className={styles.beliefMore}>
+                  Read more
+                </Button>
+              </Reveal>
+            </div>
+            <aside className={styles.career} aria-label="Career timeline">
+              <Reveal className={styles.timelinePhoto}>
+                <img
+                  className={styles.timelinePhotoImg}
+                  src="/images/portrait.jpg"
+                  alt="Sugam Upadhyay"
+                  width={960}
+                  height={960}
+                  loading="lazy"
+                />
+                <span className={styles.badgeCircle} aria-hidden="true">
+                  <svg className={styles.badgeBurst} viewBox="0 0 100 100">
+                    <defs>
+                      <radialGradient
+                        id="burst-grad"
+                        gradientUnits="userSpaceOnUse"
+                        cx="50"
+                        cy="50"
+                        r="15"
+                      >
+                        <stop offset="0" stopColor="#ffffff" />
+                        <stop offset="1" stopColor="#ffd8e4" />
+                      </radialGradient>
+                    </defs>
+                    <g className={styles.badgeSpokes} stroke="url(#burst-grad)">
+                      {Array.from({ length: 20 }, (_, i) => {
+                        const a = (i / 20) * Math.PI * 2;
+                        const x2 = 50 + Math.cos(a) * 15;
+                        const y2 = 50 + Math.sin(a) * 15;
+                        return (
+                          <line
+                            key={i}
+                            x1={50 + Math.cos(a) * 2}
+                            y1={50 + Math.sin(a) * 2}
+                            x2={x2}
+                            y2={y2}
+                          />
+                        );
+                      })}
+                    </g>
+                  </svg>
+                  <svg className={styles.badgeRing} viewBox="0 0 100 100">
+                    <defs>
+                      <path
+                        id="badge-arc"
+                        d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"
+                      />
+                    </defs>
+                    <text>
+                      <textPath href="#badge-arc">
+                        6+ YEARS UX · PRODUCT DESIGN · SHARECHAT ·
+                      </textPath>
+                    </text>
+                  </svg>
+                </span>
+              </Reveal>
+              {experience.map((entry) => (
+                <InView key={entry.period} className={styles.timelineGroup}>
+                  <p className={styles.timelineYear}>{careerYear(entry.period)}</p>
+                  <div className={styles.timelineItem}>
+                    <span className={styles.timelineLogo}>
+                      <img
+                        src={entry.logoSrc}
+                        alt=""
+                        width={56}
+                        height={56}
+                        loading="lazy"
+                      />
+                    </span>
+                    <span>
+                      <strong>
+                        {entry.companies.length > 1
+                          ? entry.logoAlt
+                          : entry.companies[0]}
+                      </strong>
+                      <em>{entry.role}</em>
+                    </span>
                   </div>
-                  <Link className={styles.textLink} to={card.href}>
-                    Read case study <span aria-hidden>→</span>
-                  </Link>
-                </div>
-                <CaseCardImage src={card.imageSrc} alt={card.imageAlt} />
-              </article>
-            ))}
+                </InView>
+              ))}
+            </aside>
           </div>
         </section>
 
-        <section className={styles.section} id="about" data-node-id="643:1500">
-          <div className={styles.sectionLabel}>
+        <section className={styles.section} id="work">
+          <Reveal className={styles.sectionHead}>
+            <h2 className="display-title">Case studies</h2>
+            <p className="head-sub">
+              A few case studies in product design. The problems, the bets, and
+              what shipped.
+            </p>
+          </Reveal>
+
+          <div className={styles.cardGrid}>
+            {WORK_CARDS.map((card) => {
+              const body = (
+                <>
+                  <div
+                    className={styles.cardMedia}
+                    data-placeholder={card.imageSrc ? undefined : ""}
+                  >
+                    {card.imageSrc ? (
+                      <img src={card.imageSrc} alt="" loading="lazy" />
+                    ) : (
+                      <span className={styles.cardMediaTag}>{card.tag}</span>
+                    )}
+                  </div>
+                  <div className={styles.cardBody}>
+                    <h3>{card.title}</h3>
+                    <p className={styles.cardMeta}>{card.desc}</p>
+                  </div>
+                </>
+              );
+
+              return card.href.startsWith("/") ? (
+                <Link key={card.title} className={styles.card} to={card.href}>
+                  {body}
+                </Link>
+              ) : (
+                <a key={card.title} className={styles.card} href={card.href}>
+                  {body}
+                </a>
+              );
+            })}
           </div>
-          <h2 className={styles.sectionTitle}>About Me</h2>
+        </section>
+
+        <section className={styles.section} id="about">
+          <Reveal className={styles.sectionHead}>
+            <p className="eyebrow">About</p>
+            <h2 className="display-title">About me</h2>
+          </Reveal>
 
           <div className={styles.aboutGrid}>
             <div className={styles.aboutCopy}>
@@ -538,101 +512,35 @@ export function Portfolio() {
                 </div>
               </div>
             </div>
-            <div className={styles.experienceTimeline} aria-label="Work experience">
-              <div className={styles.timelineTrack} aria-hidden="true" />
-              {experience.map((entry) => (
-                <article key={entry.period} className={styles.timelineEntry}>
-                  <div className={styles.timelineMarker}>
-                    <TimelineIcon entry={entry} />
-                  </div>
-                  <div className={styles.timelineContent}>
-                    <p className={styles.timelinePeriod}>{entry.period}</p>
-                    <h3 className={styles.timelineRole}>{entry.role}</h3>
-                    <TimelineCompanies companies={entry.companies} />
-                    <div className={styles.timelineTags}>
-                      {entry.tags.map((tag) => (
-                        <span
-                          key={tag.label}
-                          className={`${styles.expTag} ${expTagClass[tag.variant]}`}
-                        >
-                          {tag.label}
-                        </span>
-                      ))}
-                    </div>
-                    {entry.exploring ? (
-                      <div className={styles.timelineExploring}>
-                        <span className={styles.exploringLabel}>
-                          Currently exploring
-                        </span>
-                        <div className={styles.timelineTags}>
-                          {entry.exploring.map((item) => (
-                            <span
-                              key={item.label}
-                              className={`${styles.expTag} ${styles.expTagExplore}`}
-                            >
-                              {item.label}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                </article>
-              ))}
-            </div>
           </div>
         </section>
 
-        <section className={styles.contact} id="contact" data-node-id="643:1595">
-          <h2 className={styles.sectionTitleCenter}>
-            &ldquo;I like to read people and love designing for them.&rdquo;
-          </h2>
-          <div className={styles.contactConnect}>
-            <div className={styles.sectionLabelCenter}>
-              <span className={styles.sectionKicker}>Get in Touch</span>
-            </div>
-            <div className={styles.contactLinks}>
-              <a
-                className={styles.contactLink}
-                href="mailto:sugam95.upadhyay@gmail.com"
-              >
-                <img
-                  className={styles.contactIcon}
-                  src="/images/contact/gmail.svg"
-                  alt=""
-                  width={24}
-                  height={24}
-                  decoding="async"
-                />
-                sugam95.upadhyay@gmail.com
-              </a>
-              <a
-                className={styles.contactLink}
-                href="https://www.linkedin.com/in/sugamupadhyay/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  className={styles.contactIcon}
-                  src="/images/contact/linkedin.svg"
-                  alt=""
-                  width={24}
-                  height={24}
-                  decoding="async"
-                />
-                LinkedIn
-              </a>
-            </div>
+        <section className={styles.contact} id="contact">
+          <Reveal className={styles.sectionHead}>
+            <h2 className={`${styles.ctaTitle} display-title`}>
+              Let&apos;s work together
+            </h2>
+            <p className="head-sub">
+              Available for full-time roles, contracts, and freelance projects.
+              Based in India, open to remote.
+            </p>
+          </Reveal>
+          <div className={styles.heroActions}>
+            <Button href="mailto:sugam95.upadhyay@gmail.com">Get in touch</Button>
+            <Button
+              variant="ghost"
+              href="https://www.linkedin.com/in/sugamupadhyay/"
+              external
+            >
+              Connect on LinkedIn
+            </Button>
           </div>
-          <p className={styles.contactNote}>
-            Available for full-time roles, contracts, and freelance projects · Based in India, open to remote
-          </p>
         </section>
       </main>
 
-      <footer className={styles.footer} data-node-id="643:1608">
-        <span>© 2025 Sugam Upadhyay</span>
-        <span>Designed &amp; built with intention · UX / Product Design</span>
+      <footer className={styles.footer}>
+        <small>© 2026 Sugam Upadhyay</small>
+        <span>Designed &amp; built with intention</span>
       </footer>
     </div>
   );
