@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Portfolio } from "./components/Portfolio";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { ProfileModerationCaseStudy } from "./pages/ProfileModerationCaseStudy";
@@ -23,6 +24,7 @@ function App() {
         />
       </Routes>
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
