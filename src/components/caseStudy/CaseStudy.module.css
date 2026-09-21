@@ -224,17 +224,17 @@
 }
 
 .heroTitle {
-  margin: 0;
+  margin-bottom: 23px;
   font-family: var(--font-display);
   font-weight: 800;
   text-transform: uppercase;
   text-wrap: balance;
   white-space: pre-line;
-  font-size: clamp(1.7rem, 6vw, 4.2rem);
+  font-size: clamp(2.4rem, 12.4vw, 5.6rem);
   line-height: 0.76;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.00em;
   padding-block: 0.14em;
-  transform: scaleY(1.5);
+  transform: scaleY(1.0);
   transform-origin: bottom left;
   color: #ffd8e4;
   background: linear-gradient(to top, #fff4f8 0%, #ffe7f0 20%, #ffd8e4 48%);
@@ -245,6 +245,7 @@
 
 .heroDesc {
   margin: 0;
+  align-self: end;
   text-align: right;
   color: #ffd8e4;
   font-family: var(--font-serif);
@@ -263,6 +264,7 @@
   .heroTitle {
     font-size: clamp(3.12rem, min(100cqh, 50cqi), 16rem);
   }
+
 
   .heroDesc {
     font-size: clamp(0.95rem, min(2.6cqh, 1.5cqi), 1.3rem);

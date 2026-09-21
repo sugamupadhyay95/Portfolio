@@ -1,7 +1,6 @@
 import { SiteHeader } from "../components/SiteHeader";
 import { Button } from "../components/ui/Button";
 import { Reveal } from "../components/ui/Reveal";
-import { useTheme } from "../theme/ThemeProvider";
 import tokens from "../tokens/template.json";
 import styles from "./StyleGuide.module.css";
 
@@ -20,8 +19,6 @@ const COLOR_KEYS = [
 ] as const;
 
 export function StyleGuide() {
-  const { theme, setTheme } = useTheme();
-
   return (
     <div className={styles.page}>
       <SiteHeader />
@@ -31,22 +28,8 @@ export function StyleGuide() {
           <h1 className="display-title">Style guide</h1>
           <p className="head-sub">
             Spacing, type, buttons, navigation, and motion for the personal
-            site template. Switch modes to inspect both themes.
+            site template. Light mode is disabled for now.
           </p>
-          <div className={styles.modeRow}>
-            <Button
-              variant={theme === "dark" ? "primary" : "ghost"}
-              onClick={() => setTheme("dark")}
-            >
-              Dark
-            </Button>
-            <Button
-              variant={theme === "light" ? "primary" : "ghost"}
-              onClick={() => setTheme("light")}
-            >
-              Light
-            </Button>
-          </div>
         </header>
 
         <section className={styles.block}>

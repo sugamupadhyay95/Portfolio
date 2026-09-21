@@ -38,7 +38,6 @@ export function GiftboxCaseStudy() {
       deck={description}
       toc={TOC}
       heroArt={{ src: heroImage.src, alt: heroImage.alt }}
-      leadFigure={{ src: heroImage.src, alt: heroImage.alt }}
       figmaHref={GIFTBOX_FIGMA_URL}
     >
       <h2 id="overview">Overview</h2>
@@ -104,7 +103,6 @@ export function GiftboxCaseStudy() {
       ))}
 
       <h2 id="outcomes">{outcomes.title}</h2>
-      <h3>{outcomes.subheading}</h3>
       {outcomes.body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}

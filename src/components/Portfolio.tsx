@@ -40,7 +40,7 @@ const WORK_CARDS = [
     tag: "Personal · Design systems · AI",
     title: "AI-first design system",
     desc: "Design infrastructure for B2B and SaaS products, built to work across Figma, code and AI workflows.",
-    imageSrc: undefined,
+    imageSrc: "/case-studies/ai-first-design-system/Ai_Casestudy_casecard.png",
     imageAlt: "AI-first design system case study preview",
     href: "/case-studies/ai-first-design-system",
     metrics: [],
@@ -319,7 +319,7 @@ export function Portfolio() {
                     </defs>
                     <text>
                       <textPath href="#badge-arc">
-                        6+ YEARS UX · PRODUCT DESIGN · SHARECHAT ·
+                        7+ YEARS IN DESIGN · UX/PRODUCT DESIGNER · SHARECHAT · 
                       </textPath>
                     </text>
                   </svg>
@@ -426,7 +426,7 @@ export function Portfolio() {
         <section className={styles.contact} id="contact">
           <Reveal className={styles.sectionHead}>
             <h2 className={`${styles.ctaTitle} display-title`}>
-              Let&apos;s work together
+            Let’s design thoughtful experiences together
             </h2>
             <p className="head-sub">
               Available for full-time roles, contracts, and freelance projects.

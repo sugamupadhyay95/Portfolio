@@ -161,7 +161,6 @@ export function CaseStudyShell({
   toc,
   heroArt,
   heroContent,
-  leadFigure,
   figmaHref,
   children,
 }: {
@@ -170,7 +169,6 @@ export function CaseStudyShell({
   toc: TocItem[];
   heroArt?: { src: string; alt: string };
   heroContent?: ReactNode;
-  leadFigure?: { src: string; alt: string };
   figmaHref?: string;
   children: ReactNode;
 }) {
@@ -248,9 +246,6 @@ export function CaseStudyShell({
           </nav>
 
           <div className={styles.main}>
-            {leadFigure ? (
-              <CaseStudyFigure src={leadFigure.src} alt={leadFigure.alt} lead />
-            ) : null}
             {children}
             {figmaHref ? (
               <p className={styles.figmaLine}>

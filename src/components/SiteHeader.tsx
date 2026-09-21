@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { HashNavLink } from "./HashNavLink";
-import { useTheme } from "../theme/ThemeProvider";
 import styles from "./SiteHeader.module.css";
 
 export const RESUME_PDF_URL = "/resume.pdf";
@@ -14,7 +13,6 @@ const navLinks = [
 
 export function SiteHeader() {
   const { pathname, hash } = useLocation();
-  const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -70,14 +68,6 @@ export function SiteHeader() {
           >
             Resume
           </a>
-          <button
-            className={styles.themeBtn}
-            type="button"
-            onClick={toggleTheme}
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {theme === "dark" ? "Light" : "Dark"}
-          </button>
         </nav>
       </div>
     </header>

@@ -82,12 +82,13 @@
   display: inline-block;
   font-family: var(--font-display);
   text-transform: uppercase;
-  margin: 0;
-  font-size: clamp(2.75rem, 8.8vw, 10.5rem);
-  font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  margin-bottom: -2px;
+  font-size: clamp(2.75rem, 26vw, 20.5rem);
+  font-weight: 300;
+  line-height: 0.90;
+  letter-spacing: 0.00em;
   white-space: nowrap;
+  transform-origin: bottom center;
   color: var(--light-pink);
   background: linear-gradient(
     to bottom,
@@ -139,7 +140,7 @@
 }
 
 .lede {
-  margin: 8px auto 40px;
+  margin: 2px auto 40px;
   font-family: var(--font-serif);
   font-size: clamp(18px, 2.4vw, 32px);
   line-height: 1.25;
@@ -230,7 +231,7 @@
 
 .beliefMetrics {
   list-style: none;
-  margin: 0 0 28px;
+  margin: 0 0 36px;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -332,9 +333,9 @@
 
 .timelineYear {
   font-family: var(--font-display);
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 0.00em;
   color: var(--primary);
   margin: 0 0 20px;
 }
@@ -984,8 +985,8 @@
   font-weight: 400;
   font-style: italic;
   font-size: clamp(32px, 4vw, 48px);
-  line-height: 1.15;
-  letter-spacing: -0.96px;
+  line-height: 1.05;
+  letter-spacing:  0.00em;
   color: var(--light-pink);
 }
 

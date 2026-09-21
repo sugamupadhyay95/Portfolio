@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -17,35 +18,17 @@ type ThemeContextValue = {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-const STORAGE_KEY = "theme";
-
-function readTheme(): Theme {
-  if (typeof document === "undefined") return "dark";
-  const attr = document.documentElement.getAttribute("data-theme");
-  if (attr === "light" || attr === "dark") return attr;
-  return "dark";
-}
-
-function applyTheme(theme: Theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  try {
-    localStorage.setItem(STORAGE_KEY, theme);
-  } catch {
-    /* ignore quota / private mode */
-  }
-}
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(readTheme);
+  const [theme] = useState<Theme>("dark");
 
-  const setTheme = useCallback((next: Theme) => {
-    setThemeState(next);
-    applyTheme(next);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "dark");
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  }, [setTheme, theme]);
+  const setTheme = useCallback((_theme: Theme) => {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }, []);
+  const toggleTheme = useCallback(() => {}, []);
 
   const value = useMemo(
     () => ({ theme, setTheme, toggleTheme }),
