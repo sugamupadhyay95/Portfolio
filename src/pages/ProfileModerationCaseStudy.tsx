@@ -3,7 +3,6 @@ import {
   CaseStudyCompare,
   CaseStudyFigure,
   CaseStudyMetrics,
-  CaseStudyQuote,
   CaseStudyShell,
 } from "../components/caseStudy/CaseStudy";
 import { PROFILE_MODERATION_FIGMA_URL } from "../data/profileModerationCaseStudy";
@@ -11,16 +10,13 @@ import { PROFILE_MODERATION_FIGMA_URL } from "../data/profileModerationCaseStudy
 const TOC = [
   { id: "overview", label: "Overview" },
   { id: "problem", label: "Problem" },
-  { id: "research", label: "Research" },
-  { id: "architecture", label: "Architecture" },
-  { id: "decisions", label: "Decisions" },
-  { id: "before-after", label: "Comparison" },
-  { id: "process", label: "Process" },
+  { id: "approach", label: "Approach" },
+  { id: "solution", label: "Solution" },
   { id: "impact", label: "Outcomes" },
   { id: "reflection", label: "Reflection" },
 ];
 
-const DECISION_CARDS = [
+export const DECISION_CARDS = [
   {
     num: "01",
     title: "Autoplay + parallel interaction",
@@ -55,7 +51,7 @@ const DECISION_CARDS = [
   },
 ];
 
-const PROCESS_STEPS = [
+export const PROCESS_STEPS = [
   {
     title: "Discovery",
     desc: "Interviews with 2–3 BPO moderators + Clarity session recording integration to map friction points quantitatively.",
@@ -82,154 +78,150 @@ export function ProfileModerationCaseStudy() {
   return (
     <CaseStudyShell
       title={"Profile\nModeration\nTool"}
-      deck="A full redesign of the content moderation SaaS used by 50+ operations employees daily. Deep user research revealed friction points that were costing the company hundreds of hours per week."
+      deck="Redesign of the content moderation SaaS used by 50+ operations employees daily. Deep user research revealed friction points that were costing the company hundreds of hours per week."
       toc={TOC}
       heroArt={{
         src: "/case-studies/profile-moderation/Content.png",
         alt: "Profile Moderation Tool interface",
       }}
-      leadFigure={{
-        src: "/case-studies/profile-moderation/After Screenshot.png",
-        alt: "Redesigned four-panel moderation interface",
-      }}
       figmaHref={PROFILE_MODERATION_FIGMA_URL}
     >
-      <h2 id="overview">Overview</h2>
+      <h2 id="overview">Reducing profile moderation time at Sharechat</h2>
       <p>
-        The Profile Moderation Tool is an internal web app used by BPO teams to
-        review user-generated profiles on Moj, India's short-video platform.
-        Moderators assess profiles across multiple dimensions, authenticity,
-        content type, upload frequency, engagement quality, and policy
-        compliance. With 18–20k profiles reviewed daily, even small
-        inefficiencies at the individual level compound into significant
-        operational costs.
+        I revamped ShareChat’s internal profile moderation tool used by BPO
+        teams to review user profiles on Moj. By restructuring the workflow
+        around uninterrupted content review and faster actions, we reduced
+        Average Handling Time from 105–110 seconds to approximately 90 seconds
+        per profile ans saved 4.3L INR per month.
       </p>
       <CaseStudyMetrics
         items={[
-          { num: "Product", lbl: "Internal web app · ShareChat" },
-          { num: "Role", lbl: "Product Designer" },
+          { num: "Product", lbl: "Enterprise tool · ShareChat" },
+          { num: "Role", lbl: "UX Designer" },
           { num: "Users", lbl: "50+ BPO moderators" },
-          { num: "2024", lbl: "Year shipped" },
+          { num: "2022", lbl: "Year shipped" },
         ]}
       />
       <CaseStudyChips
-        items={["Figma", "Clarity", "Research", "Wireframing", "Prototyping"]}
+        items={["UX Research", "Information Architecture", "Wireframing", "Visual Design"]}
       />
 
       <h2 id="problem">What was slowing moderators down?</h2>
       <p>
-        The baseline AHT (Average Handle Time) sat at 105–110 seconds per
-        profile. Through interviews and Clarity session recordings, four
-        friction points emerged:
+      Moderators reviewed profile information, posts and videos before answering questions and taking an action. The average handling time was 105–110 seconds per profile. At 18,000–20,000 daily reviews, even small usability issues created significant operational friction.
       </p>
       <ul>
         <li>
-          Videos required a manual click to play, and hovering to watch blocked
-          all other interactions — moderators couldn't read metadata or answer
-          questions while previewing content.
-        </li>
-        <li>
-          Key profile metadata was missing from the review view, forcing
-          moderators to mentally fill in gaps or navigate away.
-        </li>
-        <li>
-          The genre selection question used a full expanded list that consumed
-          excessive screen real estate, pushing other questions out of view.
-        </li>
-        <li>
-          The Moj Camera icon was not visible, making it harder to identify
-          camera-originated content at a glance.
-        </li>
-        <li>
-          No visibility into completed count — moderators could only see
-          remaining profiles, with no sense of progress or daily output. This
-          made it hard to self-pace or feel accomplishment during long shifts.
-        </li>
-      </ul>
+        Video playback was interrupted when moderators moved the cursor towards
+        the action panel, preventing them from reviewing content and recording
+        decisions in parallel.
+            </li>
+            <li>
+        Key metadata was missing from the review screen, creating information gaps and forcing moderators to make decisions with limited context.
+            </li>
+            <li>
+        The expanded genre list occupied too much screen space, weakened the information hierarchy and pushed other questions below the fold.
+            </li>
+            <li>
+        The Moj Camera indicator had low visibility, making it difficult to identify the content source at a glance.
+            </li>
+            <li>
+        The interface showed only the remaining profiles, not the completed count. Without a clear sense of progress during long shifts, moderators often felt frustrated and demotivated.
+            </li>
+          </ul>
+      <h3>Objective</h3>
+      <p>
+        Reduce AHT from 105–110 seconds to 90 seconds by minimising interaction
+        friction, scrolling and context switching, without overhauling the
+        familiar interface or creating a new learning curve for moderators.
+      </p>
       <CaseStudyFigure
-        src="/case-studies/profile-moderation/Old UI Screenshot.png"
-        alt="Annotated breakdown of the old moderation interface showing five friction points"
+            src="/case-studies/profile-moderation/Old UI Screenshot.png"
+            alt="Annotated breakdown of the old moderation interface showing five friction points"
         caption="Old interface — five friction points mapped from interviews and session recordings"
       />
 
-      <h2 id="research">Understanding the moderator</h2>
+      <h2 id="approach">Approach</h2>
       <p>
-        I interviewed 2–3 members of the BPO team and integrated Microsoft
-        Clarity to observe real sessions. This helped map exactly where time was
-        being lost and validate which pain points had the highest frequency.
+      The redesign started with individual usability issues but the work became more valuable when I connected them to the complete moderation workflow. Interviews and behavioural observation helped me understand where time was being lost. A clearer View-and-Action model then helped turn those findings into a structure the team could build without making the tool unfamiliar to moderators.
       </p>
-      <CaseStudyFigure
-        src="/case-studies/profile-moderation/Persona Card.png"
-        alt="Persona card — BPO content moderator working on Moj profiles"
+
+      <h3 id="approach">Observing the review workflow</h3>
+      <p>
+      I interviewed BPO moderators and used Microsoft Clarity session recordings to observe how they moved between videos, metadata and questions. This helped me identify recurring friction points and connect them to the complete moderation workflow, without making the tool unfamiliar to existing users.
+      </p>
+      
+      <h3 id="approach">Finding one pattern behind multiple problems</h3>
+      <p>
+      The five usability issues pointed to one underlying problem, frequent context switching between content review and decision-making. This shifted the focus from isolated UI fixes to improving the end-to-end moderation workflow.ntified a recurring pattern where moderators would move between videos, metadata and questions in a specific sequence. This helped me identify recurring friction points and connect them to the complete moderation workflow, without making the tool unfamiliar to existing users.
+      </p>
+
+      <h3 id="approach">Organising the workflow around View and Action</h3>
+      <p>
+      I mapped the experience around the two activities moderators needed to perform together:
+      </p>
+      <CaseStudyMetrics
+        items={[
+          { num: "View", lbl: "Understand the profile, posts and video content" },
+          { num: "Action", lbl: "Take a decision based on the content and profile information" },
+        ]}
       />
-      <CaseStudyQuote>
-        “Every extra click or scroll I have to do breaks my flow. When videos
-        don't autoplay, I lose my rhythm and it takes a second to recalibrate
-        for each profile.”
-      </CaseStudyQuote>
-
-      <h2 id="architecture">Restructuring the four-panel layout</h2>
-      <p>
-        The redesign organised the screen into four distinct zones, each with a
-        single clear purpose: Profile Info, Video Preview, Questions, and
-        History.
-      </p>
-      <CaseStudyFigure
-        src="/case-studies/profile-moderation/div.case-visual.png"
-        alt="Four-panel information architecture diagram"
-        caption="Each zone has one job — watch on the left, answer on the right, at the same time."
-      />
-      <p>
-        This separation keeps the moderator's attention in the right place at
-        the right time — they can watch a video on the left while answering
-        questions on the right simultaneously, which was impossible in the
-        original layout.
+      <p>This became the foundation for the new information architecture. Instead of moving through content and controls as a forced sequence, moderators could keep both parts of the task visible and work between them seamlessly.
       </p>
 
-      <h2 id="decisions">Four changes, one goal</h2>
-      <p>
-        The redesign organised the screen into four distinct zones, each with a
-        single clear purpose:
-      </p>
-      {DECISION_CARDS.map((card) => (
-        <div key={card.num}>
-          <h3>
-            {card.num} — {card.title}
-          </h3>
-          <p>{card.desc}</p>
-          <p>
-            <strong>{card.impact}</strong>
-          </p>
-          <CaseStudyCompare
-            beforeSrc={card.beforeSrc}
-            afterSrc={card.afterSrc}
-            beforeAlt={`${card.title} — before`}
-            afterAlt={`${card.title} — after`}
-          />
-        </div>
-      ))}
+      <h3 id="approach">Creating a new information architecture</h3>
+      <p> The existing interface was already part of the moderator's daily routine. A complete visual overhaul could reduce familiarity and introduce a new learning curve. 
+</p>
+<p>
+I kept the recognisable parts of the tool while changing the structure and interactions that were creating delays. The Senior UX Designer reviewed the key decisions, and I worked with developers during implementation to make sure the intended workflow was carried into the build.
+</p>
 
-      <h2 id="before-after">Key UI changes at a glance</h2>
+      <h2 id="solution">solution</h2>
+      <p>
+      The redesigned moderation tool retained its familiar structure but reorganised the review experience into four focused zones: Profile Information, Video Preview, Questions and History. Each change addressed a specific point of delay while keeping the full review context available on one screen:
+      </p>
+      <ul>
+  <li>
+    <strong>Autoplay and parallel interaction: </strong>
+     The first video played automatically in an independent panel,
+    allowing moderators to answer questions while continuing to
+    review the content.
+  </li>
+
+  <li>
+    <strong>Compact genre selection: </strong>
+     A multi-select dropdown replaced the expanded list, freeing
+    vertical space and keeping at least three additional questions
+    visible above the fold.
+  </li>
+
+  <li>
+    <strong>Key metadata at the point of decision: </strong>
+     MCPP score, 30-day metric, posts, followers, language and profile
+    ID were brought into the review view, with a more visible
+    Moj Camera indicator.
+              </li>
+
+  <li>
+    <strong>Progress visibility: </strong>
+     Completed and remaining profile counts appeared together,
+    giving moderators a clearer view of their output during a shift.
+  </li>
+</ul>
+
       <CaseStudyCompare
-        beforeSrc="/case-studies/profile-moderation/Before Screenshot.png"
+        layout="vertical"
         afterSrc="/case-studies/profile-moderation/After Screenshot.png"
-        beforeAlt="Old moderation interface — manual video play, limited metadata"
+        beforeSrc="/case-studies/profile-moderation/Before Screenshot.png"
         afterAlt="Redesigned moderation interface — autoplay, full metadata, compact dropdowns, progress bar"
+        beforeAlt="Old moderation interface — manual video play, limited metadata"
+        afterCaption="Redesigned interface: four panels, autoplay, full metadata, visible Camera icon, Compact genre selection, AHT ~90 seconds."
+        beforeCaption="Old interface: single panel, click-to-play, minimal metadata, AHT 105–110 seconds."
       />
-      <p>
-        Old interface: single panel, click-to-play, minimal metadata, AHT
-        105–110 seconds. Redesigned interface: four panels, autoplay, full
-        metadata, Camera icon, AHT ~90 seconds.
-      </p>
+<h3 id="solution">Trade off: Improvement without relearning</h3>
+<p>A complete interface overhaul could have created a stronger visual change, but it would also have introduced a new learning curve for moderators using the tool every day. I kept the existing mental model and focused the redesign on the interactions creating the most delay. This improved efficiency without requiring the team to relearn the moderation workflow.
 
-      <h2 id="process">How it came together</h2>
-      <ol>
-        {PROCESS_STEPS.map((step) => (
-          <li key={step.title}>
-            <strong>{step.title}.</strong> {step.desc}
-          </li>
-        ))}
-      </ol>
+</p>
 
       <h2 id="impact">Results after release</h2>
       <CaseStudyMetrics
@@ -241,7 +233,7 @@ export function ProfileModerationCaseStudy() {
       />
       <p>
         At 18–20k daily reviews, a 15–17 second reduction per profile translates
-        to roughly 75–85 hours of moderator time saved every single day — the
+        to roughly 75–85 hours of moderator time saved every single day, the
         kind of compounding impact that makes small UX decisions strategically
         significant.
       </p>
@@ -251,20 +243,16 @@ export function ProfileModerationCaseStudy() {
         <li>Zero additional headcount</li>
       </ul>
 
-      <h2 id="reflection">What I learned</h2>
-      <p>
-        This project reinforced that high-impact UX work doesn't always mean a
-        visual overhaul. The old and new UIs look similar — the meaningful
-        changes were about workflow: removing forced sequences (click → wait →
-        answer), surfacing the right context at the right time, and making
-        corrections frictionless. Small behavioural improvements at scale
-        compound into significant business outcomes.
+      <h2 id="reflection">Reflection</h2>
+
+      <p> 
+        <strong>Micro-frictions compound into operational impact:</strong> Interaction delays may seem small at the task level, but across 18,000–20,000 daily reviews, they directly affect throughput and operational cost.
       </p>
       <p>
-        If I were to extend this further, I'd explore keyboard-shortcut-first
-        navigation for power users, and predictive pre-fill for the genre field
-        based on content signals — reducing question-answering time even
-        further.
+      <strong>Workflow mattered more than a visual overhaul: </strong> The strongest improvement came from organising content review and decision-making around the moderator’s actual task, not from making the interface look completely different.
+      </p>
+      <p>
+      <strong>Familiarity is part of usability:</strong> Preserving familiar interaction patterns respected the moderator's existing mental model, reduced the adoption barrier and avoided increasing time-to-proficiency.
       </p>
     </CaseStudyShell>
   );

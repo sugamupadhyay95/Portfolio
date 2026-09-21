@@ -8,15 +8,15 @@ import {
   GIFTBOX_FIGMA_URL,
   giftboxCaseStudy,
 } from "../data/giftboxCaseStudy";
+import styles from "./GiftboxCaseStudy.module.css";
 
 const TOC = [
   { id: "overview", label: "Overview" },
   { id: "brief", label: "Background" },
   { id: "core-decision", label: "Approach" },
   { id: "screens", label: "Solution" },
-  { id: "design-system", label: "System" },
+  { id: "outcomes", label: "Outcomes" },
   { id: "reflection", label: "Reflection" },
-  { id: "gallery", label: "The work" },
 ];
 
 export function GiftboxCaseStudy() {
@@ -28,14 +28,13 @@ export function GiftboxCaseStudy() {
     brief,
     coreDecision,
     screens,
-    designSystem,
+    outcomes,
     reflection,
-    gallery,
   } = giftboxCaseStudy;
 
   return (
     <CaseStudyShell
-      title={"Corporate\ngifting has\na trust\nproblem"}
+      title={"Corporate\ngifting\nplatform"}
       deck={description}
       toc={TOC}
       heroArt={{ src: heroImage.src, alt: heroImage.alt }}
@@ -44,10 +43,15 @@ export function GiftboxCaseStudy() {
     >
       <h2 id="overview">Overview</h2>
       <p>
-        Corporate gifting has a trust problem. HR managers spend days
-        coordinating bulk gifts across vendors they've never met, for prices
-        that aren't fixed, on platforms designed for retail. Giftbox was built
-        to fix that.
+        Giftbox helps businesses discover products, curate multi-brand gifts,
+        and request vendor quotes in one place.
+      </p>
+      <p>
+        I designed the platform from ideation to prototype for RazeHQ, shaping
+        the user flows, visual direction, high-fidelity UI, and design system
+        over six weeks. The core challenge was adapting familiar ecommerce
+        patterns to a B2B purchase journey where quantities, customisation, and
+        negotiation influence the final price.
       </p>
       <CaseStudyMetrics
         items={metrics.map((item) => ({
@@ -67,61 +71,47 @@ export function GiftboxCaseStudy() {
           <p>{problem.desc}</p>
         </div>
       ))}
-      <p>{brief.competitorNote}</p>
 
       <h2 id="core-decision">{coreDecision.title}</h2>
+      <p>{coreDecision.intro}</p>
+      <h3>{coreDecision.subheading}</h3>
       {coreDecision.body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
-      <CaseStudyFigure
-        src={coreDecision.image.src}
-        alt={coreDecision.image.alt}
-        caption="Quote-first cart — range pricing and a Request Quotes CTA instead of checkout."
-      />
+      <p>{coreDecision.prioritiesIntro}</p>
+      <ul>
+        {coreDecision.priorities.map((item) => (
+          <li key={item.title}>
+            <strong>{item.title}:</strong> {item.desc}
+          </li>
+        ))}
+      </ul>
+      {coreDecision.closing.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+      <h3>{coreDecision.consistencyHeading}</h3>
+      <p>{coreDecision.consistencyBody}</p>
 
       <h2 id="screens">{screens.title}</h2>
       {screens.items.map((screen) => (
-        <div key={screen.num}>
-          <h3>
-            {screen.num} — {screen.title}
-          </h3>
-          <p>
-            <strong>{screen.subhead}</strong>
-          </p>
+        <div key={screen.title} className={styles.solutionItem}>
+          <h3>{screen.title}</h3>
           <p>{screen.body}</p>
-          <ul>
-            {screen.callouts.map((callout) => (
-              <li key={callout.id}>
-                <strong>
-                  {callout.id}. {callout.label}.
-                </strong>{" "}
-                {callout.desc}
-              </li>
-            ))}
-          </ul>
           {screen.images.map((img) => (
             <CaseStudyFigure key={img.src} src={img.src} alt={img.alt} />
           ))}
         </div>
       ))}
 
-      <h2 id="design-system">{designSystem.title}</h2>
-      {designSystem.body.map((paragraph) => (
+      <h2 id="outcomes">{outcomes.title}</h2>
+      <h3>{outcomes.subheading}</h3>
+      {outcomes.body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
-      <CaseStudyFigure
-        src={designSystem.image.src}
-        alt={designSystem.image.alt}
-      />
 
       <h2 id="reflection">{reflection.title}</h2>
       {reflection.body.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
-      ))}
-
-      <h2 id="gallery">{gallery.title}</h2>
-      {gallery.images.map((img) => (
-        <CaseStudyFigure key={img.src} src={img.src} alt={img.alt} />
       ))}
     </CaseStudyShell>
   );

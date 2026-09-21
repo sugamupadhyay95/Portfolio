@@ -1,8 +1,24 @@
+@font-face {
+  font-family: "Highrise";
+  src: url("/fonts/HighriseFont-Condensed-Demo.otf") format("opentype");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Morganite Extra Bold";
+  src: url("/fonts/Morganite-ExtraBold.ttf") format("truetype");
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-serif: "Merriweather", Georgia, serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Morganite Extra Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-highrise: "Morganite Extra Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --max: 1320px;
   --gap: 120px;

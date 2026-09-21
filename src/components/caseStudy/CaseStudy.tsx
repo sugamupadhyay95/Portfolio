@@ -70,27 +70,88 @@ export function CaseStudyCompare({
   afterSrc,
   beforeAlt,
   afterAlt,
+  beforeCaption,
+  afterCaption,
+  layout = "horizontal",
 }: {
   beforeSrc: string;
   afterSrc: string;
   beforeAlt: string;
   afterAlt: string;
+  beforeCaption?: string;
+  afterCaption?: string;
+  layout?: "horizontal" | "vertical";
+}) {
+  const after = (
+    <figure>
+      <div className={styles.figure}>
+        <img src={afterSrc} alt={afterAlt} loading="lazy" />
+      </div>
+      {afterCaption ? (
+        <figcaption className={styles.compareCaption}>{afterCaption}</figcaption>
+      ) : (
+        <figcaption className={styles.compareLabel}>After</figcaption>
+      )}
+    </figure>
+  );
+
+  const before = (
+    <figure>
+      <div className={styles.figure}>
+        <img src={beforeSrc} alt={beforeAlt} loading="lazy" />
+      </div>
+      {beforeCaption ? (
+        <figcaption className={styles.compareCaption}>{beforeCaption}</figcaption>
+      ) : (
+        <figcaption className={styles.compareLabel}>Before</figcaption>
+      )}
+    </figure>
+  );
+
+  return (
+    <div
+      className={`${styles.compare} ${layout === "vertical" ? styles.compareVertical : ""}`}
+    >
+      {layout === "vertical" ? (
+        <>
+          {after}
+          {before}
+        </>
+      ) : (
+        <>
+          {before}
+          {after}
+        </>
+      )}
+    </div>
+  );
+}
+
+function DefaultCaseStudyHero({
+  title,
+  deck,
+  heroArt,
+}: {
+  title: string;
+  deck: string;
+  heroArt?: { src: string; alt: string };
 }) {
   return (
-    <div className={styles.compare}>
-      <div>
-        <span className={styles.compareLabel}>Before</span>
-        <div className={styles.figure}>
-          <img src={beforeSrc} alt={beforeAlt} loading="lazy" />
-        </div>
+    <>
+      <div className={styles.heroInner}>
+        <h1 className={styles.heroTitle}>{title}</h1>
+        <p className={styles.heroDesc}>{deck}</p>
       </div>
-      <div>
-        <span className={styles.compareLabel}>After</span>
-        <div className={styles.figure}>
-          <img src={afterSrc} alt={afterAlt} loading="lazy" />
+      {heroArt ? (
+        <div className={styles.heroArt} aria-hidden>
+          <div className={styles.device}>
+            <div className={styles.deviceScreen}>
+              <img src={heroArt.src} alt="" />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : null}
+    </>
   );
 }
 
@@ -99,14 +160,16 @@ export function CaseStudyShell({
   deck,
   toc,
   heroArt,
+  heroContent,
   leadFigure,
   figmaHref,
   children,
 }: {
   title: string;
-  deck: string;
+  deck?: string;
   toc: TocItem[];
   heroArt?: { src: string; alt: string };
+  heroContent?: ReactNode;
   leadFigure?: { src: string; alt: string };
   figmaHref?: string;
   children: ReactNode;
@@ -158,20 +221,14 @@ export function CaseStudyShell({
           ×
         </Link>
 
-        <header className={styles.hero}>
-          <div className={styles.heroInner}>
-            <h1 className={styles.heroTitle}>{title}</h1>
-            <p className={styles.heroDesc}>{deck}</p>
-          </div>
-          {heroArt ? (
-            <div className={styles.heroArt} aria-hidden>
-              <div className={styles.device}>
-                <div className={styles.deviceScreen}>
-                  <img src={heroArt.src} alt="" />
-                </div>
-              </div>
-            </div>
-          ) : null}
+        <header className={`${styles.hero} ${heroContent ? styles.heroCustom : ""}`}>
+          {heroContent ?? (
+            <DefaultCaseStudyHero
+              title={title}
+              deck={deck ?? ""}
+              heroArt={heroArt}
+            />
+          )}
         </header>
 
         <div className={styles.layout}>

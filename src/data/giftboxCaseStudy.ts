@@ -28,196 +28,136 @@ export const giftboxCaseStudy = {
 
   brief: {
     sectionTag: "01 — The Brief",
-    title: "Three problems hiding inside one category",
+    title: "Bulk gifting required more than a retail checkout",
     subheading:
-      "RazeHQ had the vendor relationships and the AI logic. What they didn't have was a product experience that could match their ambition. The brief was to design Giftbox from zero, brand, screens, and system.",
-    problems: [
+      "RazeHQ had vendor relationships and AI capabilities. The brief was to translate them into a product experience that supported corporate gifting, from discovery to a vendor-ready enquiry.",
+    body: [
+      "Three challenges shaped the design:",
+      "1. Fragmented product discovery",
+      "2. Variable pricing",
+      "3. A need for credibility",
+    ],
+
+      problems: [
       {
         num: "01",
-        title: "No single place to curate",
-        desc: "Buyers had to coordinate multiple vendors separately. There was no tool to browse, compare, and build a multi-brand gift box in one place.",
+        title: "Fragmented product discovery",
+        desc: "Buyers had to coordinate with vendors separately to explore products and assemble multi-brand gifts. Giftbox needed to bring browsing, comparison, and curation into a shared workflow.",
       },
       {
         num: "02",
-        title: "Pricing was opaque",
-        desc: "B2B bulk pricing varies by quantity and negotiation. Showing a fixed price is a lie. Decision-makers needed a quote flow, not a checkout.",
+        title: "Variable pricing",
+        desc: "Bulk prices change with order quantity and negotiation. Displaying a fixed price at checkout could create a mismatch between the buyer’s expectations and the vendor’s final quote.",
       },
       {
         num: "03",
-        title: "The category looks wrong",
-        desc: "Gifting platforms either look like SaaS dashboards or cheap ecommerce. Neither builds trust for bulk procurement decisions worth lakhs.",
+        title: "A need for credibility",
+        desc: "The platforms reviewed leaned towards either dense dashboards or retail storefronts. Giftbox needed an inviting catalogue with clear purchasing information to support procurement decisions worth lakhs.",
       },
     ],
-    competitorNote:
-      "Competitive analysis informed direction — no whitespace map available.",
   },
 
   coreDecision: {
-    sectionTag: "02 — The Core UX Decision",
-    eyebrow: "The Core UX Decision",
-    title: "Most gifting platforms are checkout-first. Giftbox needed to be quote-first.",
+    sectionTag: "02 — Approach",
+    eyebrow: "Approach",
+    title: "Approach",
+    intro:
+      "Competitive analysis and the founder’s industry knowledge shaped the initial design direction. Assumptions about buyer needs still needed validation through direct user research.",
+    subheading: "Designing around the buying decision",
     body: [
-      "Here's why that matters: Bulk B2B orders don't have a fixed price. A cart that shows ₹575 is lying to the buyer. A cart that shows ₹575–₹600 and routes to a vendor negotiation is honest — and that leads to earning trust with procurement managers who've been burned before.",
-      "This single decision changed the entire conversion flow. The CTA isn't \"Buy Now.\" It's \"Request Quotes.\" The cart isn't a transaction, it's a brief to vendors.",
+      "The central UX decision was to make Giftbox quote-first.",
+      "The cart would collect the buyer’s requirements before a vendor confirmed pricing. Product selection led to “Request Quotes,” with price ranges setting expectations before negotiation.",
     ],
-    image: {
-      src: `${GIFTBOX_ASSETS}/Cart.png`,
-      alt: "Giftbox cart screen showing price ranges and Request Quotes CTA",
-    },
+    prioritiesIntro: "I organised the experience around three priorities:",
+    priorities: [
+      {
+        title: "Context-led discovery",
+        desc: "Structure the information architecture around occasion, curated collections, budget, and minimum order quantity.",
+      },
+      {
+        title: "Clear pricing expectations",
+        desc: "Show indicative ranges and make the next step explicit through CTA language.",
+      },
+      {
+        title: "A structured vendor brief",
+        desc: "Gather selected products, quantities, business details, and gifting preferences through the enquiry flow.",
+      },
+    ],
+    closing: [
+      "Maya, the AI gifting assistant, provided a guided discovery route alongside browsing and filtering. My role was to design how buyers accessed and interacted with it within the product.",
+    ],
+    consistencyHeading: "Building consistency into the UI",
+    consistencyBody:
+      "I established design tokens and reusable components to support the six-week scope. Shared foundations for colour, typography, spacing, radius, and elevation kept the screens consistent and made specifications explicit for developer handoff.",
   },
 
   screens: {
-    sectionTag: "03 — The Screens",
-    eyebrow: "The Screens",
-    title: "Five screens. Every decision has a reason.",
+    sectionTag: "03 — Solution",
+    eyebrow: "Solution",
+    title: "Solution",
     items: [
       {
-        num: "01",
-        title: "Cart",
-        subhead: "The cart that doesn't lie about pricing",
-        body: "Instead of a fixed unit price, the cart shows a range (₹575–₹600). It sets expectations before negotiation and reduces buyer friction when the final vendor quote arrives.",
+        title: "A cart built for quote requests",
+        body: "Price ranges set expectations before vendor negotiation. Inline quantity controls support bulk planning, while “Request Quotes” turns the selected products into a vendor brief.",
         images: [{ src: `${GIFTBOX_ASSETS}/Cart.png`, alt: "Giftbox cart screen" }],
-        callouts: [
+      },
+      {
+        title: "Filters that support gifting decisions",
+        body: "Occasion, curated collections, budget, and minimum order quantity help buyers narrow their choices. Maya, the AI assistant, stays accessible for guided discovery.",
+        images: [
           {
-            id: "A",
-            label: "Price range, not a fixed price",
-            desc: "₹575–₹600 signals that final pricing is negotiated. Honest upfront = less friction at the proposal stage.",
-          },
-          {
-            id: "B",
-            label: "\"Request Quotes\" replaces checkout",
-            desc: "The primary CTA isn't transactional. It opens the quote flow, turning the cart into a vendor brief.",
-          },
-          {
-            id: "C",
-            label: "Quantity controls per line item",
-            desc: "Different products may need different quantities. The stepper handles this without leaving the cart view.",
+            src: `${GIFTBOX_ASSETS}/Combo_Boxes.png`,
+            alt: "Giftbox product listing with occasion and curation filters",
           },
         ],
       },
       {
-        num: "02",
-        title: "Product Listing",
-        subhead: "Filters built for how buyers think, not how products are organised",
-        body: "An HR manager doesn't think \"show me products under ₹1200.\" They think \"I need Diwali gifts for 200 employees.\" Occasion, Curations, and Budget are first-class filters, not afterthoughts below Price and MOQ.",
-        images: [{ src: `${GIFTBOX_ASSETS}/Combo_Boxes.png`, alt: "Giftbox product listing with occasion and curation filters" }],
-        callouts: [
-          {
-            id: "A",
-            label: "Occasion filter is first",
-            desc: "Diwali, Onboarding, Wellness, Holiday — buyers think by occasion before they think by price.",
-          },
-          {
-            id: "B",
-            label: "Curations = editorial collections",
-            desc: "Pre-built thematic collections reduce decision fatigue for first-time buyers.",
-          },
-          {
-            id: "C",
-            label: "MOQ Range, not just price",
-            desc: "Minimum order quantity matters for bulk planning. Both price and MOQ sliders surface together.",
-          },
-          {
-            id: "D",
-            label: "AI Assistant is always reachable",
-            desc: "Maya floats over the listing. For buyers who don't know what they want, it's a shortcut past the filter-and-browse flow entirely.",
-          },
-        ],
-      },
-      {
-        num: "03",
-        title: "Homepage",
-        subhead: "The AI assistant is a feature, not a landing page promise",
-        body: "Most platforms bury AI features in a feature list. Maya, the AI gifting assistant, appears as a persistent floating widget with quick-suggestion chips — immediately usable, not something you have to discover.",
+        title: "Clear starting points on the homepage",
+        body: "Curated collection tabs and Maya’s suggested prompts help buyers begin exploring. Brand, product, and client figures appear above the fold as trust signals.",
         images: [
           {
             src: `${GIFTBOX_ASSETS}/Giftbox_raze.png`,
             alt: "Giftbox homepage with Maya AI assistant widget open",
           },
         ],
-        callouts: [
-          {
-            id: "A",
-            label: "Maya",
-            desc: "The AI assistant floats on every page. It's not a feature in a menu — it's the fastest path to a curated result.",
-          },
-          {
-            id: "B",
-            label: "Quick-suggestion chips",
-            desc: "\"Help me create a welcome kit\" — these chips do the work of a search query for buyers who don't know what to type.",
-          },
-          {
-            id: "C",
-            label: "Curated collection tabs",
-            desc: "Editorial tabs (Diwali Hampers, Eco Friendly, Brand Building) give buyers a starting point without blank-canvas anxiety.",
-          },
-          {
-            id: "D",
-            label: "Trust signals above the fold",
-            desc: "100+ brands, 5K+ products, 20+ clients — shown as plain numbers, not illustrated icons. Numbers are more credible.",
-          },
-        ],
       },
       {
-        num: "04 & 05",
-        title: "Quote Form",
-        subhead: "A two-step form with a clear purpose for each step",
-        body: "Step 1 is about who you are. Step 2 is about what you need. That distinction — identity then intent — reduces cognitive load and makes each step feel completable in under a minute.",
+        title: "A focused two-step quote form",
+        body: "The form groups business and contact details in the first step, followed by gifting preferences in the second. Packaging, branding, and delivery requirements create a structured brief for vendor matching. WhatsApp is the primary contact method, as requested by the client.",
         images: [
           { src: `${GIFTBOX_ASSETS}/Form_1.png`, alt: "Giftbox quote form — step 1, company identity" },
         ],
-        callouts: [
+      },
+      {
+        title: "A reusable design system",
+        body: "Named tokens define colour, typography, spacing, radius, and elevation. Reusable components with documented states support UI consistency, developer handoff, and future screens.",
+        images: [
           {
-            id: "A",
-            label: "Company name comes before personal name",
-            desc: "This is a B2B context. Leading with business identity signals that, and sets the right register for the rest of the form.",
-          },
-          {
-            id: "B",
-            label: "WhatsApp as primary contact",
-            desc: "Client-requested. It's how vendors and buyers actually communicate in India.",
-          },
-          {
-            id: "C",
-            label: "Preferences = vendor-matching brief",
-            desc: "Sensitivity, packaging, branding, delivery type — these aren't form fields. They're the spec that gets matched to the right vendor on the backend.",
+            src: `${GIFTBOX_ASSETS}/design-system.png`,
+            alt: "Giftbox Figma component library and design token panel",
           },
         ],
       },
     ],
   },
 
-  designSystem: {
-    sectionTag: "08 — Design System",
-    title: "What I built so the next designer doesn't start from scratch",
+  outcomes: {
+    title: "Outcomes",
+    subheading: "A complete product design foundation in six weeks",
     body: [
-      "Short. Specific. Shows craft.",
-      "Every value in the UI traces to a named token. Colour, type scale, spacing, radius, shadow. The developer never had to guess.",
-      "Component count: cards, filters, buttons (primary/outline/ghost), form inputs, quantity steppers, star ratings, chips, modals, toasts. All with documented states.",
+      "I delivered the visual direction, five high-fidelity screen designs, prototype, and tokenised component library.",
+      "The design connected product discovery, curation, quantity selection, and quote requests into one journey. It also defined where AI assistance could support browsing and how buyer requirements would be collected for vendors.",
+      "The outcome at this stage was a design and handoff foundation. Post-launch metrics were not available to assess conversion, task completion, or buyer satisfaction.",
     ],
-    image: {
-      src: `${GIFTBOX_ASSETS}/design-system.png`,
-      alt: "Giftbox Figma component library and design token panel",
-    },
   },
 
   reflection: {
-    sectionTag: "09 — What This Project Proved",
-    title: "What this project proved",
+    sectionTag: "09 — Reflection",
+    title: "Reflection",
     body: [
-      "End-to-end design in six weeks, from zero brand direction to a fully tokenised system and five production-ready screens — is possible when the process is right. Build the system before the screens.",
-      "The thing I'd do differently: get 5 buyer interviews before week 3. The IA is solid, but it's built on a founder's model of the buyer, not the buyer's own words.",
-    ],
-  },
-
-  gallery: {
-    sectionTag: "Closing — The Work",
-    title: "All five screens",
-    images: [
-      { src: `${GIFTBOX_ASSETS}/Cart.png`, alt: "Cart screen" },
-      { src: `${GIFTBOX_ASSETS}/Combo_Boxes.png`, alt: "Product listing screen" },
-      { src: `${GIFTBOX_ASSETS}/Giftbox_raze.png`, alt: "Homepage with Maya assistant" },
-      { src: `${GIFTBOX_ASSETS}/Form_1.png`, alt: "Quote form step 1" },
+      "The main limitation was relying on the founder’s understanding of buyers. That gave the project a starting point, but left assumptions about navigation, pricing comprehension, and enquiry requirements untested.",
+      "I would bring five buyer interviews into the process before week three, then use task-based usability testing to check whether buyers could find suitable gifts, interpret the price ranges, and complete a quote request without assistance.",
+      "The strongest lesson was that the pricing model shaped the interaction design across the product. Once the journey centred on requesting a quote, the cart, CTA language, and form each had a clearer purpose.",
     ],
   },
 } as const;

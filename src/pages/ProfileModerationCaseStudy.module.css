@@ -258,7 +258,7 @@
   margin: 8px 0 16px;
   font-family: var(--font-serif);
   font-size: clamp(28px, 3vw, 44px);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.6px;
   color: var(--color-cod-gray);
